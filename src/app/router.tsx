@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SearchPage from "./pages/SearchPage";
-import OrderDetailsPage from "./pages/OrderDetailsPage";
+import HomePage from "@/pages/HomePage";
+import SearchPage from "@/pages/SearchPage";
+import OrderDetailsPage from "@/pages/OrderDetailsPage";
 
-export function App() {
+export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>

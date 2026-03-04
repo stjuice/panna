@@ -1,10 +1,22 @@
-import { supabase } from "@/lib/supabase/client";
-import type { OrderFlat } from "@/types/orders";
-import type { OrdersRepository } from "./repository";
+import { supabase } from "@/shared/supabase/client";
+import type { OrderFlat } from "../types";
+
+export interface OrdersRepository {
+	getOrders(): Promise<OrderFlat[]>;
+	getOrder(id: number): Promise<OrderFlat | null>;
+	searchOrders(query: string): Promise<OrderFlat[]>;
+}
+
+export class OrderNotFoundError extends Error {
+	constructor(id: number) {
+		super(`Order ${id} not found`);
+		this.name = "OrderNotFoundError";
+	}
+}
 
 const VIEW = "v_orders_flat";
 
-export class SupabaseOrdersRepository implements OrdersRepository {
+class SupabaseOrdersRepository implements OrdersRepository {
 	async getOrders(): Promise<OrderFlat[]> {
 		const { data, error } = await supabase
 			.from(VIEW)
@@ -37,4 +49,13 @@ export class SupabaseOrdersRepository implements OrdersRepository {
 		}
 		return (data ?? []) as OrderFlat[];
 	}
+}
+
+let cached: OrdersRepository | null = null;
+
+export function getOrdersRepository(): OrdersRepository {
+	if (!cached) {
+		cached = new SupabaseOrdersRepository();
+	}
+	return cached;
 }
