@@ -5,13 +5,14 @@
 	justify-content: center;
 	min-height: 100vh;
 	padding: 2rem;
-    padding-bottom: 16em;
+	padding-bottom: 16em;
 }
 
 .logo {
-	width: 16rem;
+	width: 11rem;
 	height: auto;
 	margin-bottom: 2.5rem;
+	animation: logoShrink 2.8s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
 }
 
 .buttons {
@@ -19,4 +20,29 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 1.25rem;
+	opacity: 0;
+	animation: fadeIn 1s ease forwards;
+	animation-delay: 2.4s;
+}
+
+@keyframes logoShrink {
+	0% {
+		width: 55rem;
+		margin-bottom: 0;
+	}
+	100% {
+		width: 11rem;
+		margin-bottom: 2.5rem;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(1rem);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
