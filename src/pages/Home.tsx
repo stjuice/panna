@@ -1,18 +1,15 @@
-import { Link } from "react-router-dom";
-import styles from "@/styles/orders.module.scss";
+import styles from "./home.module.scss";
+import MainButton from "@/components/buttons/MainButton";
+import SecondaryButton from "@/components/buttons/SecondaryButton";
 
 const HomePage = () => {
 	return (
 		<div className={styles.container}>
-			<h1 className={styles.title}>Panna</h1>
-			<nav style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-				<Link to="/orders" className={styles.card} style={{ display: "block" }}>
-					Orders
-				</Link>
-				<Link to="/search" className={styles.card} style={{ display: "block" }}>
-					Search
-				</Link>
-			</nav>
+			<img src="/logo_for_white.png" alt="Panna wedding salon" className={styles.logo} />
+			<div className={styles.buttons}>
+				<MainButton to="/search">Знайти</MainButton>
+				<SecondaryButton to="/orders">Замовлення</SecondaryButton>
+			</div>
 		</div>
 	);
 };
