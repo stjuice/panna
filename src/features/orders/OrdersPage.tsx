@@ -3,7 +3,7 @@ import { useOrders } from "./hooks/useOrders";
 import OrderList from "./components/OrderList";
 import styles from "@/styles/orders.module.scss";
 
-export default function OrdersPage() {
+const OrdersPage = () => {
 	const { data: orders, isLoading, error } = useOrders();
 
 	if (isLoading) return <div className={styles.container}>Loading…</div>;
@@ -18,4 +18,6 @@ export default function OrdersPage() {
 			<OrderList orders={orders ?? []} />
 		</div>
 	);
-}
+};
+
+export default OrdersPage;

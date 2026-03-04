@@ -4,7 +4,7 @@ import { useSearchOrders } from "@/features/orders/hooks/useSearchOrders";
 import OrderList from "@/features/orders/components/OrderList";
 import styles from "@/styles/orders.module.scss";
 
-export default function SearchPage() {
+const SearchPage = () => {
 	const [query, setQuery] = useState("");
 	const { data: orders = [], isLoading } = useSearchOrders(query);
 
@@ -24,4 +24,6 @@ export default function SearchPage() {
 			{isLoading ? <div>Loading…</div> : <OrderList orders={orders} />}
 		</div>
 	);
-}
+};
+
+export default SearchPage;

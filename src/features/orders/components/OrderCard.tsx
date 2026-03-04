@@ -6,7 +6,7 @@ type OrderCardProps = {
 	order: OrderFlat;
 };
 
-export default function OrderCard({ order }: OrderCardProps) {
+const OrderCard = ({ order }: OrderCardProps) => {
 	return (
 		<Link to={`/order/${order.order_id}`} className={styles.card} style={{ display: "block" }}>
 			<div className={styles.itemHeader}>
@@ -27,4 +27,6 @@ export default function OrderCard({ order }: OrderCardProps) {
 			{order.description && <div className={styles.details}>{order.description}</div>}
 		</Link>
 	);
-}
+};
+
+export default OrderCard;

@@ -2,7 +2,7 @@ import { useParams, Link } from "react-router-dom";
 import { useOrder } from "@/features/orders/hooks/useOrders";
 import styles from "@/styles/orders.module.scss";
 
-export default function OrderDetailsPage() {
+const OrderDetailsPage = () => {
 	const { id } = useParams<{ id: string }>();
 	const orderId = id ? parseInt(id, 10) : NaN;
 	const { data: order, isLoading, error } = useOrder(orderId);
@@ -61,4 +61,6 @@ export default function OrderDetailsPage() {
 			</div>
 		</div>
 	);
-}
+};
+
+export default OrderDetailsPage;

@@ -3,10 +3,10 @@ import { AppRouter } from "./router";
 
 const queryClient = new QueryClient();
 
-export function App() {
+export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <AppRouter />
     </QueryClientProvider>
   );
-}
+};

@@ -1,5 +1,7 @@
 import OrdersPage from "@/features/orders/OrdersPage";
 
-export default function HomePage() {
+const HomePage = () => {
 	return <OrdersPage />;
-}
+};
+
+export default HomePage;

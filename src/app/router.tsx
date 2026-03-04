@@ -3,7 +3,7 @@ import HomePage from "@/pages/HomePage";
 import SearchPage from "@/pages/SearchPage";
 import OrderDetailsPage from "@/pages/OrderDetailsPage";
 
-export function AppRouter() {
+export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,4 +13,4 @@ export function AppRouter() {
       </Routes>
     </BrowserRouter>
   );
-}
+};

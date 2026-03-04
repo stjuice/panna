@@ -6,7 +6,7 @@ type OrderListProps = {
 	orders: OrderFlat[];
 };
 
-export default function OrderList({ orders }: OrderListProps) {
+const OrderList = ({ orders }: OrderListProps) => {
 	return (
 		<div className={styles.list}>
 			{orders.map((order) => (
@@ -14,4 +14,6 @@ export default function OrderList({ orders }: OrderListProps) {
 			))}
 		</div>
 	);
-}
+};
+
+export default OrderList;
