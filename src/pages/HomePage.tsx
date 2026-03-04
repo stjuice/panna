@@ -20,7 +20,6 @@ export default function HomePage() {
       <div className={styles.header}>
         <h1 className={styles.title}>Orders</h1>
         <Link to="/search">Search</Link>
-        <Link to="/create">Create order</Link>
       </div>
       <OrderList orders={orders ?? []} />
     </div>

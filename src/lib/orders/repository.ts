@@ -1,6 +1,4 @@
-import { type NewOrder, type Order } from "@/types/orders";
-
-export type OrderUpdates = Partial<Omit<Order, "ID">>;
+import type { OrderFlat } from "@/types/orders";
 
 export class OrderNotFoundError extends Error {
 	constructor(id: number) {
@@ -10,11 +8,7 @@ export class OrderNotFoundError extends Error {
 }
 
 export interface OrdersRepository {
-	getOrders(): Promise<Order[]>;
-	getOrder(id: number): Promise<Order | null>;
-	createOrder(payload: NewOrder): Promise<Order>;
-	updateOrder(id: number, updates: OrderUpdates): Promise<Order>;
-	deleteOrder(id: number): Promise<void>;
+	getOrders(): Promise<OrderFlat[]>;
+	getOrder(id: number): Promise<OrderFlat | null>;
+	searchOrders(query: string): Promise<OrderFlat[]>;
 }
-
-

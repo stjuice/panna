@@ -9,20 +9,12 @@ const repo = getOrdersRepository();
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
-  const { data: orders = [], isLoading } = useQuery({
-    queryKey: ["orders"],
-    queryFn: () => repo.getOrders(),
-  });
 
-  const filtered =
-    !query.trim()
-      ? orders
-      : orders.filter(
-          (o) =>
-            o.CustomerName.toLowerCase().includes(query.toLowerCase()) ||
-            o.Details.toLowerCase().includes(query.toLowerCase()) ||
-            o.CustomerPhoneNumber.includes(query),
-        );
+  const { data: orders = [], isLoading } = useQuery({
+    queryKey: ["orders-search", query],
+    queryFn: () =>
+      query.trim() ? repo.searchOrders(query.trim()) : repo.getOrders(),
+  });
 
   return (
     <div className={styles.container}>
@@ -40,7 +32,7 @@ export default function SearchPage() {
       {isLoading ? (
         <div>Loading…</div>
       ) : (
-        <OrderList orders={filtered} />
+        <OrderList orders={orders} />
       )}
     </div>
   );
