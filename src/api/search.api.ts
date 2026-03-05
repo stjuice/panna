@@ -3,12 +3,13 @@ import type { OrderFlat } from "@/behavior/orders/types";
 
 const VIEW = "v_orders_flat";
 
-export const searchOrdersByName = async (query: string): Promise<OrderFlat[]> => {
+export const searchOrdersByQuery = async (query: string): Promise<OrderFlat[]> => {
+	const pattern = `%${query}%`;
 	const { data, error } = await supabase
 		.from(VIEW)
 		.select("*")
-		.ilike("customer_name", `%${query}%`)
+		.or(`customer_name.ilike.${pattern},customer_phone.ilike.${pattern},school_name.ilike.${pattern}`)
 		.order("order_number", { ascending: false });
-	if (error) throw new Error(`searchOrdersByName failed: ${error.message}`);
+	if (error) throw new Error(`searchOrders failed: ${error.message}`);
 	return (data ?? []) as OrderFlat[];
 };
