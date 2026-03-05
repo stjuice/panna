@@ -87,6 +87,9 @@
 .table {
 	width: 100%;
 	border-collapse: collapse;
+
+	border-collapse: separate;
+	border-spacing: 0 8px;
 }
 
 .tableHead th {
@@ -114,6 +117,26 @@
 		font-size: 0.95rem;
 		border-bottom: 1px solid #e8eaed;
 	}
+}
+
+.tableRow:nth-child(even) {
+	background-color: rgba(120, 160, 200, 0.08);
+}
+
+.tableRow:nth-child(odd) {
+	background-color: white;
+}
+
+.tableRow td:first-child {
+	border-top-left-radius: 999px;
+	border-bottom-left-radius: 999px;
+	padding-left: 1.2rem;
+}
+
+.tableRow td:last-child {
+	border-top-right-radius: 999px;
+	border-bottom-right-radius: 999px;
+	padding-right: 1.2rem;
 }
 
 .statusNew {
