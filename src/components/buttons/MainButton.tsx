@@ -3,14 +3,21 @@ import Button from "./Button";
 
 type MainButtonProps = {
 	to?: string;
-	size?: "default" | "small";
+	size?: "default" | "medium" | "small";
 	onClick?: () => void;
+	disabled?: boolean;
 	children: React.ReactNode;
 };
 
-const MainButton = ({ to, size, onClick, children }: MainButtonProps) => {
+const MainButton = ({ to, size, onClick, disabled, children }: MainButtonProps) => {
 	return (
-		<Button to={to} size={size} onClick={onClick} className={styles.main}>
+		<Button
+			to={to}
+			size={size}
+			onClick={onClick}
+			disabled={disabled}
+			className={styles.main}
+		>
 			{children}
 		</Button>
 	);

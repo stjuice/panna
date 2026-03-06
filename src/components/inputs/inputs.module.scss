@@ -1,0 +1,35 @@
+.roundedInput {
+	width: 100%;
+	padding: 0.75rem 1rem;
+	border: 2px solid transparent;
+	border-radius: 999px;
+	font-size: 1rem;
+	outline: none;
+	background:
+		linear-gradient(#fff, #fff) padding-box,
+		linear-gradient(160deg, #a2a5ac 0%, #e9f0f3 100%) border-box;
+
+	&::placeholder {
+		color: #aaa;
+	}
+
+	&:focus {
+		box-shadow: 0 2px 12px rgba(140, 170, 195, 0.25);
+	}
+
+	color: black;
+}
+
+.label {
+	display: block;
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: #555;
+	margin-bottom: 0.35rem;
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	gap: 0.35rem;
+}

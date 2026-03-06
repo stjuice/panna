@@ -60,3 +60,24 @@ export const createOrder = async (
 		throw new Error(`Order insert failed: ${orderError.message}`);
 	}
 };
+
+export type OrderUpdatePayload = {
+	customer_name: string;
+	customer_phone: string;
+	school_name?: string;
+	school_city?: string;
+	type: string;
+	status: string;
+	description?: string;
+	release_date?: string | null;
+	next_visit_date?: string | null;
+	price?: number | null;
+	deposit?: number | null;
+};
+
+export const updateOrder = async (
+	_orderId: string,
+	_payload: OrderUpdatePayload,
+): Promise<void> => {
+	// TODO: implement Supabase update (customers + orders tables)
+};

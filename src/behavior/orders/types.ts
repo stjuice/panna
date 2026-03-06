@@ -32,3 +32,18 @@ export type NewOrder = {
 	price?: number | null;
 	deposit?: number | null;
 };
+
+/** Editable form state for order details page */
+export type OrderForm = {
+	customer_name: string;
+	customer_phone: string;
+	school_city: string;
+	school_name: string;
+	type: OrderFlat["type"];
+	status: OrderFlat["status"];
+	description: string;
+	price: number | "";
+	deposit: number | "";
+	release_date: string;
+	next_visit_date: string;
+};

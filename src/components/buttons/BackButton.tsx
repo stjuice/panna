@@ -3,7 +3,7 @@ import Button from "./Button";
 
 type BackButtonProps = {
 	to?: string;
-	size?: "default" | "small";
+	size?: "default" | "medium" | "small";
 	onClick?: () => void;
 	text: string;
 };

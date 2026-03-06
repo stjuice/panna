@@ -3,14 +3,27 @@ import Button from "./Button";
 
 type SecondaryButtonProps = {
 	to?: string;
-	size?: "default" | "small";
+	size?: "default" | "medium" | "small";
 	onClick?: () => void;
+	disabled?: boolean;
 	children: React.ReactNode;
 };
 
-const SecondaryButton = ({ to, size, onClick, children }: SecondaryButtonProps) => {
+const SecondaryButton = ({
+	to,
+	size,
+	onClick,
+	disabled,
+	children,
+}: SecondaryButtonProps) => {
 	return (
-		<Button to={to} size={size} onClick={onClick} className={styles.secondary}>
+		<Button
+			to={to}
+			size={size}
+			onClick={onClick}
+			disabled={disabled}
+			className={styles.secondary}
+		>
 			{children}
 		</Button>
 	);

@@ -1,3 +1,9 @@
+$blueGradient: linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%);
+$grayGradient: linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%);
+$whiteGradient: linear-gradient(#fff, #fff);
+$main: $blueGradient padding-box, $grayGradient border-box;
+$secondary: $whiteGradient padding-box, $grayGradient border-box;
+
 %base {
 	display: flex;
 	align-items: center;
@@ -22,6 +28,15 @@
 	height: 4.2em;
 }
 
+.wrapperMedium {
+	width: 12em;
+	height: 3.2em;
+
+    button {
+        border: 3px solid transparent;
+    }
+}
+
 .wrapperSmall {
 	width: 6em;
 	height: 2.5em;
@@ -29,35 +44,30 @@
 
 .main {
 	@extend %base;
-	background:
-		linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%) padding-box,
-		linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%) border-box;
+	background: $main;
 	color: #ffffff;
 	box-shadow: 0 4px 14px rgba(140, 170, 195, 0.4);
 
 	&:hover {
 		box-shadow: 0 6px 20px rgba(140, 170, 195, 0.5);
 	}
+
+	&:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+	}
 }
 
 .secondary {
 	@extend %base;
-	background:
-		linear-gradient(#fff, #fff) padding-box,
-		linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%) border-box;
+	background: $secondary;
 	color: #829fbd;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-
-	&:hover {
-		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-	}
 }
 
 .details {
 	@extend %base;
-	background:
-        linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%) padding-box,
-        linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%) border-box;
+	background: $main;
 	border: 3px solid transparent;
 	color: #ffffff;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -77,15 +87,10 @@
         z-index: 1;
 
         border: none;
-        background:
-            linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%) padding-box;
+        background: $main;
     
         color: #ffffff;
         box-shadow: 0 4px 14px rgba(140, 170, 195, 0.4);
-    
-        &:hover {
-            box-shadow: 0 6px 20px rgba(140, 170, 195, 0.5);
-        }
     }
 }
 
@@ -97,4 +102,4 @@
     font-size: 4.4rem;
     line-height: 1;
     color: #7c9bb8;
-  }
+}

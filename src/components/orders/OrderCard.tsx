@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { formatDate } from "@/lib/formatDate";
 import type { OrderCardProps } from "./types";
 import styles from "@/styles/orders.module.scss";
 
@@ -14,13 +15,20 @@ const OrderCard = ({ order, onClick }: OrderCardProps) => {
 		>
 			<div className={styles.itemHeader}>
 				<div className={styles.name}>{order.customer_name}</div>
-				<div className={styles.id}>#{order.order_number}</div>
+				<div className={styles.id}>
+					#<span className="numero">{order.order_number}</span>
+				</div>
 			</div>
 			<div className={styles.meta}>
 				<span>{order.type}</span>
 				{` · `}
 				<span>{order.status}</span>
-				{order.release_date && <>{` · `}<span>{order.release_date.split("T")[0]}</span></>}
+				{order.release_date && (
+					<>
+						{` · `}
+						<span className="numero">{formatDate(order.release_date)}</span>
+					</>
+				)}
 			</div>
 		</Link>
 	);
