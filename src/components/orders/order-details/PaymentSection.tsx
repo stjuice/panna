@@ -37,7 +37,7 @@ const PaymentSection = ({ price, deposit, onChange }: PaymentSectionProps) => {
 					}
 				/>
 				<div className={styles.remaining}>
-					Оплачено: <span className="numero">{remaining}</span> грн
+					Оплачено: {remaining} грн
 				</div>
 			</div>
 		</section>

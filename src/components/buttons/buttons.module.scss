@@ -17,6 +17,7 @@ $secondary: $whiteGradient padding-box, $grayGradient border-box;
 	text-decoration: none;
 	cursor: pointer;
 	transition: box-shadow 0.25s ease, transform 0.15s ease;
+	font-family: "Cormorant Infant", serif;
 
 	&:active {
 		transform: scale(0.97);

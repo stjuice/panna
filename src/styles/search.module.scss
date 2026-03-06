@@ -19,11 +19,18 @@
   }
   
   .tableHead {
+    @include layout.subHeaders;
+	font-size: 1.5rem;
+	font-weight:bolder;
+
 	display: grid;
 	grid-template-columns: 55% 15% 15% 15%;
-	font-weight: 600;
 	border-bottom: 2px solid #829fbd;
 	padding-bottom: 6px;
+
+	first-child {
+		margin-left: 1rem;
+	}
   }
   
   .rowCard {
@@ -31,6 +38,8 @@
 	border-radius: 20px;
 	overflow: hidden;
 	transition: all 0.2s ease;
+	@include layout.defaultText;
+	font-weight: 600;
   }
   
   .rowHeader {
@@ -49,6 +58,8 @@
   }
   
   .nameCell {
+	@include layout.subHeaders;
+	font-size: 1.5rem;
 	word-break: break-word;
 	line-height: 1.35;
   }
@@ -137,7 +148,7 @@
 	text-align: center;
 	font-style: italic;
 	color: #666;
-	font-size: 0.95rem;
+	font-size: 1.2rem;
 	padding-bottom: 2em;
 }
 

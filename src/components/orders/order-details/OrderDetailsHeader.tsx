@@ -1,3 +1,5 @@
+import type { OrderStatus } from "@/behavior/orders/types";
+import { ORDER_STATUS_LABEL } from "@/behavior/orders/types";
 import BackButton from "@/components/buttons/BackButton";
 import styles from "@/styles/orderDetails.module.scss";
 
@@ -7,12 +9,9 @@ type OrderDetailsHeaderProps = {
 	onStatusChange: (status: string) => void;
 };
 
-const STATUS_OPTIONS = [
-	{ value: "new", label: "нове" },
-	{ value: "fitting", label: "примірка" },
-	{ value: "released", label: "видано" },
-	{ value: "cancelled", label: "скасовано" },
-];
+const STATUS_OPTIONS = (Object.entries(ORDER_STATUS_LABEL) as [OrderStatus, string][]).map(
+	([value, label]) => ({ value, label }),
+);
 
 const OrderDetailsHeader = ({
 	orderNumber,
@@ -23,9 +22,7 @@ const OrderDetailsHeader = ({
 		<div className={styles.header}>
 			<BackButton to="/search" text="Назад" />
 			<div className={styles.headerCenter}>
-				<h1 className={styles.orderTitle}>
-					Замовлення <span className="numero">№{orderNumber}</span>
-				</h1>
+				<h1 className={styles.orderTitle}>Замовлення №{orderNumber}</h1>
 				<div className={styles.statusRow}>
 					<span className={styles.statusLabel}>Статус:</span>
 					<select

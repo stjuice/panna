@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import type { OrderFlat } from "@/behavior/orders/types";
+import { ORDER_STATUS_LABEL, ORDER_TYPE_LABEL } from "@/behavior/orders/types";
 import { formatDate } from "@/lib/formatDate";
 import styles from "@/styles/search.module.scss";
 import DetailsButton from "../buttons/DetailsButton";
@@ -31,7 +32,7 @@ const OrderTable = ({ orders }: OrderTableProps) => {
         <div>Ім'я</div>
         <div>Тип</div>
         <div>Статус</div>
-        <div>Дата видачі</div>
+        <div>Видача</div>
       </div>
 
       {orders.map(order => {
@@ -49,15 +50,13 @@ const OrderTable = ({ orders }: OrderTableProps) => {
             >
               <div className={styles.nameCell}>{order.customer_name}</div>
 
-              <div>{order.type}</div>
+              <div>{ORDER_TYPE_LABEL[order.type]}</div>
 
               <div className={statusClass[order.status] ?? ""}>
-                {order.status}
+                {ORDER_STATUS_LABEL[order.status]}
               </div>
 
-              <div>
-                <span className="numero">{formatDate(order.release_date)}</span>
-              </div>
+              <div>{formatDate(order.release_date)}</div>
             </div>
 
             {expanded && (
@@ -66,12 +65,12 @@ const OrderTable = ({ orders }: OrderTableProps) => {
               
                   <div className={styles.field}>
                     <span className={styles.label}>Номер:</span>
-                    <span className="numero">{order.customer_phone}</span>
+                    <span>{order.customer_phone}</span>
                   </div>
               
                   <div className={styles.field}>
                     <span className={styles.label}>Ціна:</span>
-                    <span className="numero">{order.price ?? "—"} грн</span>
+                    <span>{order.price ?? "—"} грн</span>
                   </div>
               
                   <div className={styles.field}>
@@ -81,7 +80,7 @@ const OrderTable = ({ orders }: OrderTableProps) => {
               
                   <div className={styles.field}>
                     <span className={styles.label}>Аванс:</span>
-                    <span className="numero">{order.deposit ?? "—"} грн</span>
+                    <span>{order.deposit ?? "—"} грн</span>
                   </div>
               
                   <div className={styles.field}>
@@ -91,7 +90,7 @@ const OrderTable = ({ orders }: OrderTableProps) => {
               
                   <div className={styles.field}>
                     <span className={styles.label}>Очікує:</span>
-                    <span className="numero">{order.remaining ?? "—"} грн</span>
+                    <span>{order.remaining ?? "—"} грн</span>
                   </div>
               
                 </div>

@@ -1,10 +1,28 @@
+export type OrderType = "graduation" | "wedding" | "party" | "other";
+
+export const ORDER_TYPE_LABEL: Record<OrderType, string> = {
+	graduation: "випускна",
+	wedding: "весільна",
+	party: "вечірня",
+	other: "інша",
+};
+
+export type OrderStatus = "new" | "fitting" | "released" | "cancelled";
+
+export const ORDER_STATUS_LABEL: Record<OrderStatus, string> = {
+	new: "нове",
+	fitting: "примірка",
+	released: "видано",
+	cancelled: "скасовано",
+};
+
 export type OrderFlat = {
 	order_id: string;
 	order_number: number;
 	created_at: string;
 
-	type: "graduation" | "wedding" | "party" | "other";
-	status: "new" | "fitting" | "released" | "cancelled";
+	type: OrderType;
+	status: OrderStatus;
 
 	description?: string;
 	release_date?: string;
@@ -39,8 +57,8 @@ export type OrderForm = {
 	customer_phone: string;
 	school_city: string;
 	school_name: string;
-	type: OrderFlat["type"];
-	status: OrderFlat["status"];
+	type: OrderType;
+	status: OrderStatus;
 	description: string;
 	price: number | "";
 	deposit: number | "";

@@ -24,7 +24,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  font-family: "Arsenica", sans-serif;
+  font-family: "Cormorant Infant", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -47,11 +47,14 @@ a {
 }
 
 h1 {
-  font-family: "Arsenica", sans-serif;
+  font-family: "Cormorant Infant", serif;
   font-weight: 400;
   font-style: normal;
 }
 
-.numero {
-  font-family: system-ui, sans-serif;
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 900;
+  font-style: italic;
 }

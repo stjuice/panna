@@ -8,7 +8,7 @@ const HomePage = () => {
 			<img src="/logo_for_white.png" alt="Panna wedding salon" className={styles.logo} />
 			<div className={styles.buttons}>
 				<MainButton to="/search">Знайти</MainButton>
-				<SecondaryButton to="/orders">Замовлення</SecondaryButton>
+				<SecondaryButton to="/orders/new">Створити замовлення</SecondaryButton>
 			</div>
 		</div>
 	);
