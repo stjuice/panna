@@ -27,7 +27,7 @@ export const searchOrders = async (query: string): Promise<OrderFlat[]> => {
 	const { data, error } = await supabase
 		.from(VIEW)
 		.select("*")
-		.or(`customer_name.ilike.${pattern},customer_phone.ilike.${pattern},school_name.ilike.${pattern}`)
+		.or(`customer_name.ilike.${pattern},customer_phone.ilike.${pattern},school_name.ilike.${pattern},school_city.ilike.${pattern}`)
 		.order("order_number", { ascending: false });
 	if (error) throw new Error(`searchOrders failed: ${error.message}`);
 	return (data ?? []) as OrderFlat[];

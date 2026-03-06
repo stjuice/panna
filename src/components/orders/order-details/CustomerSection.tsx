@@ -1,8 +1,10 @@
+import type { OrderType } from "@/behavior/orders/types";
 import RoundedInput from "@/components/inputs/RoundedInput";
 import RoundedDateInput from "@/components/inputs/RoundedDateInput";
 import styles from "@/styles/orderDetails.module.scss";
 
 type CustomerSectionProps = {
+	orderType: OrderType;
 	form: {
 		customer_name: string;
 		customer_phone: string;
@@ -13,7 +15,9 @@ type CustomerSectionProps = {
 	onChange: (updates: Partial<CustomerSectionProps["form"]>) => void;
 };
 
-const CustomerSection = ({ form, onChange }: CustomerSectionProps) => {
+const CustomerSection = ({ orderType, form, onChange }: CustomerSectionProps) => {
+	const showSchool = orderType === "graduation";
+
 	return (
 		<section className={styles.section}>
 			<h2 className={styles.sectionTitle}>Замовниця</h2>
@@ -30,18 +34,22 @@ const CustomerSection = ({ form, onChange }: CustomerSectionProps) => {
 					value={form.customer_phone}
 					onChange={(e) => onChange({ customer_phone: e.target.value })}
 				/>
-				<RoundedInput
-					label="Місто"
-					placeholder="Місто"
-					value={form.school_city}
-					onChange={(e) => onChange({ school_city: e.target.value })}
-				/>
-				<RoundedInput
-					label="Школа"
-					placeholder="Школа / учбовий заклад"
-					value={form.school_name}
-					onChange={(e) => onChange({ school_name: e.target.value })}
-				/>
+				{showSchool && (
+					<>
+						<RoundedInput
+							label="Місто"
+							placeholder="Місто"
+							value={form.school_city}
+							onChange={(e) => onChange({ school_city: e.target.value })}
+						/>
+						<RoundedInput
+							label="Школа"
+							placeholder="Школа / учбовий заклад"
+							value={form.school_name}
+							onChange={(e) => onChange({ school_name: e.target.value })}
+						/>
+					</>
+				)}
 				<RoundedDateInput
 					label="Дата свята"
 					value={form.release_date}

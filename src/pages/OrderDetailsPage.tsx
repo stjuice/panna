@@ -5,6 +5,7 @@ import { useOrder } from "@/behavior/orders/useOrder";
 import { orderToForm, getDefaultOrderForm } from "@/behavior/orders/orderFormState";
 import type { OrderForm } from "@/behavior/orders/types";
 import { createCustomer } from "@/api/customers.api";
+import { findOrCreateSchool } from "@/api/schools.api";
 import { createOrder, updateOrder } from "@/api/orders.api";
 import styles from "@/styles/orders.module.scss";
 import OrderDetailsHeader from "@/components/orders/order-details/OrderDetailsHeader";
@@ -52,8 +53,16 @@ const OrderDetailsPage = () => {
 					full_name: form.customer_name,
 					phone: form.customer_phone,
 				});
+				const school =
+					form.type === "graduation" && form.school_name?.trim()
+						? await findOrCreateSchool(
+								form.school_name.trim(),
+								form.school_city?.trim() || undefined,
+							)
+						: null;
 				const created = await createOrder({
 					customer_id: customer.id,
+					school_id: school?.id ?? null,
 					type: form.type,
 					status: form.status,
 					description: form.description || null,
@@ -65,7 +74,15 @@ const OrderDetailsPage = () => {
 				queryClient.invalidateQueries({ queryKey: ["orders"] });
 				navigate(`/orders/${created.id}`);
 			} else {
+				const school =
+					form.type === "graduation" && form.school_name?.trim()
+						? await findOrCreateSchool(
+								form.school_name.trim(),
+								form.school_city?.trim() || undefined,
+							)
+						: null;
 				await updateOrder(orderId, {
+					school_id: school?.id ?? null,
 					type: form.type,
 					status: form.status,
 					description: form.description || null,
@@ -121,6 +138,7 @@ const OrderDetailsPage = () => {
       />
 
 			<CustomerSection
+				orderType={form.type}
 				form={{
 					customer_name: form.customer_name,
 					customer_phone: form.customer_phone,
