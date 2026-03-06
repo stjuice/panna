@@ -1,6 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import type { OrderFlat } from "@/behavior/orders/types";
-import type { NewOrder } from "@/behavior/orders/types";
+import type { Order, OrderFlat } from "@/behavior/orders/types";
 
 const VIEW = "v_orders_flat";
 
@@ -35,49 +34,31 @@ export const searchOrders = async (query: string): Promise<OrderFlat[]> => {
 };
 
 export const createOrder = async (
-	customerName: string,
-	customerPhone: string,
-	order: Omit<NewOrder, "customer_id">,
-): Promise<void> => {
-	const { data: customer, error: customerError } = await supabase
-		.from("customers")
-		.upsert(
-			{ full_name: customerName, phone: customerPhone },
-			{ onConflict: "phone" },
-		)
+	payload: Omit<Order, "id" | "order_number" | "created_at">,
+): Promise<Order> => {
+	const { data, error } = await supabase
+		.from("orders")
+		.insert(payload)
 		.select()
 		.single();
-	if (customerError || !customer) {
-		throw new Error(`Customer upsert failed: ${customerError?.message}`);
-	}
 
-	const { error: orderError } = await supabase.from("orders").insert({
-		customer_id: customer.id,
-		...order,
-		status: order.status ?? "new",
-	});
-	if (orderError) {
-		throw new Error(`Order insert failed: ${orderError.message}`);
-	}
-};
+	if (error) throw new Error(`createOrder failed: ${error.message}`);
 
-export type OrderUpdatePayload = {
-	customer_name: string;
-	customer_phone: string;
-	school_name?: string;
-	school_city?: string;
-	type: string;
-	status: string;
-	description?: string;
-	release_date?: string | null;
-	next_visit_date?: string | null;
-	price?: number | null;
-	deposit?: number | null;
+	return data as Order;
 };
 
 export const updateOrder = async (
-	_orderId: string,
-	_payload: OrderUpdatePayload,
-): Promise<void> => {
-	// TODO: implement Supabase update (customers + orders tables)
+	id: string,
+	payload: Partial<Order>,
+): Promise<Order> => {
+	const { data, error } = await supabase
+		.from("orders")
+		.update(payload)
+		.eq("id", id)
+		.select()
+		.single();
+
+	if (error) throw new Error(`updateOrder failed: ${error.message}`);
+
+	return data as Order;
 };

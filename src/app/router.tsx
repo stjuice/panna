@@ -11,7 +11,8 @@ export const AppRouter = () => {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/orders" element={<OrdersListPage />} />
 				<Route path="/search" element={<OrdersSearchPage />} />
-				<Route path="/order/:id" element={<OrderDetailsPage />} />
+				<Route path="/orders/new" element={<OrderDetailsPage />} />
+				<Route path="/orders/:id" element={<OrderDetailsPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

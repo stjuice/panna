@@ -19,3 +19,17 @@ export const fetchCustomer = async (id: string): Promise<Customer | null> => {
 	if (error) throw new Error(`fetchCustomer failed: ${error.message}`);
 	return (data as Customer | null) ?? null;
 };
+
+export const createCustomer = async (
+	payload: Omit<Customer, "id" | "created_at">
+  ): Promise<Customer> => {
+	const { data, error } = await supabase
+	  .from("customers")
+	  .insert(payload)
+	  .select()
+	  .single();
+  
+	if (error) throw new Error(`createCustomer failed: ${error.message}`);
+  
+	return data as Customer;
+  };
