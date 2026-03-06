@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { searchOrders } from "@/api/orders.api";
 import OrderTable from "@/components/orders/OrderTable";
 import styles from "@/styles/search.module.scss";
+import BackButton from "@/components/buttons/BackButton";
 
 const OrdersSearchPage = () => {
 	const [query, setQuery] = useState("");
@@ -18,7 +18,7 @@ const OrdersSearchPage = () => {
 	return (
 		<div className={styles.page}>
 			<div className={styles.topBar}>
-				<Link to="/" className={styles.backButton}>Назад</Link>
+				<BackButton to="/" text="Назад"/>
 				<h1 className={styles.pageTitle}>Пошук замовлення</h1>
 			</div>
 			<div className={styles.searchWrapper}>

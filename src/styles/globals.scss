@@ -1,3 +1,5 @@
+@use "./fonts";
+
 :root {
   --background: #f6f7f8;
   --foreground: #0a0a0a;
@@ -5,7 +7,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #f6f7f8;
+    --background: #fcfcfc;
     --foreground: #0a0a0a;
   }
 }
@@ -22,6 +24,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-family: "Arsenica", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 * {
@@ -39,4 +45,10 @@ a {
   html {
     color-scheme: dark;
   }
+}
+
+h1 {
+  font-family: "Arsenica", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }

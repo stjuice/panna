@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useOrder } from "@/behavior/orders/useOrder";
 import styles from "@/styles/orders.module.scss";
+import BackButton from "@/components/buttons/BackButton";
 
 const OrderDetailsPage = () => {
 	const { id } = useParams<{ id: string }>();
@@ -11,7 +12,7 @@ const OrderDetailsPage = () => {
 		return (
 			<div className={styles.container}>
 				<p>Invalid order ID.</p>
-				<Link to="/search">Back to orders</Link>
+        <BackButton to="/search" text="Back to orders"/>
 			</div>
 		);
 	if (isLoading) return <div className={styles.container}>Loading…</div>;
@@ -19,7 +20,7 @@ const OrderDetailsPage = () => {
 		return (
 			<div className={styles.container}>
 				<p>Order not found.</p>
-				<Link to="/search">Back to orders</Link>
+        <BackButton to="/search" text="Back to orders"/>
 			</div>
 		);
 
@@ -27,7 +28,7 @@ const OrderDetailsPage = () => {
 		<div className={styles.container}>
 			<div className={styles.header}>
 				<h1 className={styles.title}>Order #{order.order_number}</h1>
-				<Link to="/search">Back to orders</Link>
+        <BackButton to="/search" text="Back to orders"/>
 			</div>
 			<div className={styles.card}>
 				<div className={styles.itemHeader}>
