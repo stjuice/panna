@@ -27,8 +27,8 @@ const OrderDetailsPage = () => {
 	return (
 		<div className={styles.container}>
 			<div className={styles.header}>
-				<h1 className={styles.title}>Order #{order.order_number}</h1>
-        <BackButton to="/search" text="Back to orders"/>
+        <BackButton to="/" text="Назад"/>
+        <h1 className={styles.pageTitle}>Деталі замовлення #{order.order_number}</h1>
 			</div>
 			<div className={styles.card}>
 				<div className={styles.itemHeader}>

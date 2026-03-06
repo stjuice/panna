@@ -1,3 +1,17 @@
+@use "./layout.module.scss" as layout;
+
+.page {
+	@include layout.page;
+}
+
+.topBar {
+	@include layout.topBar;
+}
+
+.pageTitle {
+	@include layout.pageTitle;
+}
+
 .orderList {
 	display: flex;
 	flex-direction: column;
@@ -80,29 +94,6 @@
 	margin-top: 12px;
   }
   
-  .page {
-	display: flex;
-	background-color: #f6f7f8;
-	flex-direction: column;
-	padding: 5rem 3rem 3rem 3rem;
-	max-width: 900px;
-	margin: 0 auto;
-	gap: 1.5rem;
-}
-
-.topBar {
-	display: flex;
-	align-items: center;
-	position: relative;
-}
-
-.pageTitle {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	white-space: nowrap;
-}
-
 .searchWrapper {
 	display: flex;
 	align-items: center;
