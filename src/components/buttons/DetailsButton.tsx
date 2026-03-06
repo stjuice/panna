@@ -8,7 +8,7 @@ type DetailsButtonProps = {
 
 const DetailsButton = ({ orderId, onClick }: DetailsButtonProps) => {
 	return (
-		<Button to={`/order/${orderId}`} size={"small"} onClick={onClick} className={styles.details}>
+		<Button to={`/orders/${orderId}`} size={"small"} onClick={onClick} className={styles.details}>
 			Деталі
 		</Button>
 	);

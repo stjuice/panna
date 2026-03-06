@@ -39,6 +39,22 @@ export type OrderFlat = {
 	school_city?: string;
 };
 
+/** Row from "orders" table (for create/update API). */
+export type Order = {
+	id: string;
+	order_number: number;
+	created_at: string;
+	customer_id: string;
+	school_id?: string | null;
+	type: OrderType;
+	status: OrderStatus;
+	description?: string | null;
+	release_date?: string | null;
+	next_visit_date?: string | null;
+	price?: number | null;
+	deposit?: number | null;
+};
+
 export type NewOrder = {
 	customer_id: string;
 	school_id?: string | null;

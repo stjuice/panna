@@ -4,7 +4,7 @@ import BackButton from "@/components/buttons/BackButton";
 import styles from "@/styles/orderDetails.module.scss";
 
 type OrderDetailsHeaderProps = {
-	orderNumber: number;
+	title: string;
 	status: string;
 	onStatusChange: (status: string) => void;
 };
@@ -14,7 +14,7 @@ const STATUS_OPTIONS = (Object.entries(ORDER_STATUS_LABEL) as [OrderStatus, stri
 );
 
 const OrderDetailsHeader = ({
-	orderNumber,
+	title,
 	status,
 	onStatusChange,
 }: OrderDetailsHeaderProps) => {
@@ -22,7 +22,7 @@ const OrderDetailsHeader = ({
 		<div className={styles.header}>
 			<BackButton to="/search" text="Назад" />
 			<div className={styles.headerCenter}>
-				<h1 className={styles.orderTitle}>Замовлення №{orderNumber}</h1>
+				<h1 className={styles.orderTitle}>{title}</h1>
 				<div className={styles.statusRow}>
 					<span className={styles.statusLabel}>Статус:</span>
 					<select

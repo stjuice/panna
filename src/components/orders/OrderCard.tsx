@@ -9,7 +9,7 @@ const OrderCard = ({ order, onClick }: OrderCardProps) => {
 
 	return (
 		<Link
-			to={`/order/${order.order_id}`}
+			to={`/orders/${order.order_id}`}
 			className={styles.card}
 			style={{ display: "block" }}
 			onClick={handleClick}
