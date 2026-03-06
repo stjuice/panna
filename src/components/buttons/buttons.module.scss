@@ -53,7 +53,15 @@
 	}
 }
 
-
+.details {
+	@extend %base;
+	background:
+        linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%) padding-box,
+        linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%) border-box;
+	border: 3px solid transparent;
+	color: #ffffff;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
 
 .backContainer {
     position: relative;

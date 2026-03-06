@@ -1,58 +1,120 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import type { OrderFlat } from "@/behavior/orders/types";
 import styles from "@/styles/search.module.scss";
+import DetailsButton from "../buttons/DetailsButton";
 
 type OrderTableProps = {
-	orders: OrderFlat[];
+  orders: OrderFlat[];
 };
 
 const statusClass: Record<string, string> = {
-	new: styles.statusNew,
-	fitting: styles.statusFitting,
-	released: styles.statusReleased,
-	cancelled: styles.statusCancelled,
+  new: styles.statusNew,
+  fitting: styles.statusFitting,
+  released: styles.statusReleased,
+  cancelled: styles.statusCancelled,
 };
 
 const formatDate = (date?: string) => {
-	if (!date) return "—";
-	const d = new Date(date);
-	const dd = String(d.getDate()).padStart(2, "0");
-	const mm = String(d.getMonth() + 1).padStart(2, "0");
-	const yyyy = d.getFullYear();
-	return `${dd}.${mm}.${yyyy}`;
+  if (!date) return "—";
+  const d = new Date(date);
+  const dd = String(d.getDate()).padStart(2, "0");
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const yyyy = d.getFullYear();
+  return `${dd}.${mm}.${yyyy}`;
 };
 
 const OrderTable = ({ orders }: OrderTableProps) => {
-	const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [expandedId, setExpandedId] = useState<string | null>(null);
 
-	return (
-		<table className={styles.table}>
-			<thead>
-				<tr className={styles.tableHead}>
-					<th>Ім'я</th>
-					<th>Тип</th>
-					<th>Статус</th>
-					<th>Дата видачі</th>
-				</tr>
-			</thead>
-			<tbody>
-				{orders.map((order) => (
-					<tr
-						key={order.order_id}
-						className={styles.tableRow}
-						onClick={() => navigate(`/order/${order.order_id}`)}
-					>
-						<td>{order.customer_name}</td>
-						<td>{order.type}</td>
-						<td className={statusClass[order.status] ?? ""}>
-							{order.status}
-						</td>
-						<td>{formatDate(order.release_date)}</td>
-					</tr>
-				))}
-			</tbody>
-		</table>
-	);
+  const toggleRow = (id: string) => {
+    setExpandedId(prev => (prev === id ? null : id));
+  };
+
+  return (
+    <div className={styles.orderList}>
+      
+      <div className={styles.tableHead}>
+        <div>Ім'я</div>
+        <div>Тип</div>
+        <div>Статус</div>
+        <div>Дата видачі</div>
+      </div>
+
+      {orders.map(order => {
+        const expanded = expandedId === order.order_id;
+
+        return (
+          <div
+            key={order.order_id}
+            className={`${styles.rowCard} ${expanded ? styles.rowExpandedCard : ""}`}
+          >
+
+            <div
+              className={`${styles.rowHeader} ${expanded ? styles.rowExpandedHeader : ""}`}
+              onClick={() => toggleRow(order.order_id)}
+            >
+              <div className={styles.nameCell}>{order.customer_name}</div>
+
+              <div>{order.type}</div>
+
+              <div className={statusClass[order.status] ?? ""}>
+                {order.status}
+              </div>
+
+              <div className={styles.numeric}>
+                {formatDate(order.release_date)}
+              </div>
+            </div>
+
+            {expanded && (
+              <div className={styles.rowExpanded}>
+                <div className={styles.infoGrid}>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Номер:</span>
+                    <span className={styles.numeric}>{order.customer_phone}</span>
+                  </div>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Ціна:</span>
+                    <span className={styles.numeric}>{order.price ?? "—"} грн</span>
+                  </div>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Місто:</span>
+                    <span>{order.school_city ?? "—"}</span>
+                  </div>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Аванс:</span>
+                    <span className={styles.numeric}>{order.deposit ?? "—"} грн</span>
+                  </div>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Школа:</span>
+                    <span>{order.school_name ?? "—"}</span>
+                  </div>
+              
+                  <div className={styles.field}>
+                    <span className={styles.label}>Очікує:</span>
+                    <span className={styles.numeric}>{order.remaining ?? "—"} грн</span>
+                  </div>
+              
+                </div>
+              
+                <div className={styles.detailsWrapper}>
+                  <DetailsButton orderId={order.order_id} />
+                </div>
+              </div>
+            )}
+
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default OrderTable;

@@ -1,8 +1,8 @@
+import styles from "@/styles/search.module.scss";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { searchOrders } from "@/api/orders.api";
 import OrderTable from "@/components/orders/OrderTable";
-import styles from "@/styles/search.module.scss";
 import BackButton from "@/components/buttons/BackButton";
 
 const OrdersSearchPage = () => {
@@ -33,7 +33,7 @@ const OrdersSearchPage = () => {
 			</div>
 			{query.trim() && (
 				<div className={styles.resultCount}>
-					{orders.length} знайдено
+					Знайдено замовлень:&nbsp;&nbsp;<span className={styles.numeric}>{orders.length}</span>
 				</div>
 			)}
 			{isLoading
