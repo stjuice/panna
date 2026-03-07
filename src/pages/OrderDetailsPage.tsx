@@ -3,7 +3,7 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { useOrder } from "@/behavior/orders/useOrder";
 import { orderToForm, getDefaultOrderForm } from "@/behavior/orders/orderFormState";
-import type { OrderForm } from "@/behavior/orders/types";
+import type { OrderForm, OrderStatus } from "@/behavior/orders/types";
 import { createCustomer } from "@/api/customers.api";
 import { findOrCreateSchool } from "@/api/schools.api";
 import { cancelOrder, createOrder, saveOrder } from "@/api/orders.api";
@@ -136,9 +136,7 @@ const OrderDetailsPage = () => {
 			<OrderDetailsHeader
 				title={pageTitle}
 				status={form.status}
-				onStatusChange={(status) =>
-					setFormUpdates({ status: status as OrderForm["status"] })
-				}
+				onStatusChange={(status) => setFormUpdates({ status })}
 				backTo={returnSearchUrl}
 			/>
 
