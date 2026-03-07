@@ -23,7 +23,7 @@ const OrderDetailsHeader = ({
 }: OrderDetailsHeaderProps) => {
 	return (
 		<div className={styles.header}>
-			<BackButton to={backTo} text="Назад" />
+			<BackButton to={backTo} text="До списку замовлень" />
 			<div className={styles.headerCenter}>
 				<h1 className={styles.orderTitle}>{title}</h1>
 				<div className={styles.statusRow}>

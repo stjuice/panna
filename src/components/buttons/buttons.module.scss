@@ -1,4 +1,4 @@
-$blueGradient: linear-gradient(56deg, rgba(119, 148, 182, 1) 0%, rgba(223, 250, 255, 1) 84%);
+$blueGradient: linear-gradient(56deg, rgba(119, 148, 182, 1) 21%, rgba(223, 250, 255, 1) 100%);
 $grayGradient: linear-gradient(7deg, #a2a5ac 0%, #e9f0f3 84%);
 $whiteGradient: linear-gradient(#fff, #fff);
 $main: $blueGradient padding-box, $grayGradient border-box;
@@ -79,17 +79,26 @@ $secondary: $whiteGradient padding-box, $grayGradient border-box;
     display: inline-flex;
     align-items: center;
 
-    padding-left: 2.5rem; 
-    
+    padding-left: 2.5rem;
+
+    > div {
+        width: auto;
+        min-width: fit-content;
+    }
+
     .back {
         @extend %base;
         position: relative;
         margin-left: -2rem;
         z-index: 1;
+        width: auto;
+        min-width: fit-content;
+        padding-left: 0.75em;
+        padding-right: 0.75em;
 
         border: none;
         background: $main;
-    
+
         color: #ffffff;
         box-shadow: 0 4px 14px rgba(140, 170, 195, 0.4);
     }

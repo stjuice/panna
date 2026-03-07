@@ -15,7 +15,7 @@ const PaymentSection = ({ price, deposit, onChange }: PaymentSectionProps) => {
 			<h2 className={styles.sectionTitle}>Інформація про оплату</h2>
 			<div className={styles.paymentSection}>
 				<RoundedInput
-					label="Ціна"
+					label="Повна ціна"
 					type="number"
 					min={0}
 					value={price === "" ? "" : price}
@@ -37,7 +37,7 @@ const PaymentSection = ({ price, deposit, onChange }: PaymentSectionProps) => {
 					}
 				/>
 				<div className={styles.remaining}>
-					Оплачено: {remaining} грн
+					<h2 className={styles.sectionTitle}>Залишок: {remaining} грн</h2>
 				</div>
 			</div>
 		</section>
