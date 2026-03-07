@@ -7,6 +7,8 @@ type OrderDetailsHeaderProps = {
 	title: string;
 	status: string;
 	onStatusChange: (status: string) => void;
+	/** Back button target (e.g. /search?q=... to preserve search state). */
+	backTo?: string;
 };
 
 const STATUS_OPTIONS = (Object.entries(ORDER_STATUS_LABEL) as [OrderStatus, string][]).map(
@@ -17,10 +19,11 @@ const OrderDetailsHeader = ({
 	title,
 	status,
 	onStatusChange,
+	backTo = "/search",
 }: OrderDetailsHeaderProps) => {
 	return (
 		<div className={styles.header}>
-			<BackButton to="/search" text="Назад" />
+			<BackButton to={backTo} text="Назад" />
 			<div className={styles.headerCenter}>
 				<h1 className={styles.orderTitle}>{title}</h1>
 				<div className={styles.statusRow}>

@@ -22,6 +22,26 @@ export const fetchOrder = async (id: string): Promise<OrderFlat | null> => {
 	return (data as OrderFlat | null) ?? null;
 };
 
+/** Last N orders by most recently modified. Uses updated_at if view has it, else created_at. */
+export const fetchLastModifiedOrders = async (limit: number): Promise<OrderFlat[]> => {
+	const { data, error } = await supabase
+		.from(VIEW)
+		.select("*")
+		.order("updated_at", { ascending: false })
+		.limit(limit);
+	if (error) {
+		// Fallback when view has no updated_at (e.g. use created_at in view)
+		const fallback = await supabase
+			.from(VIEW)
+			.select("*")
+			.order("created_at", { ascending: false })
+			.limit(limit);
+		if (fallback.error) throw new Error(`fetchLastModifiedOrders failed: ${fallback.error.message}`);
+		return (fallback.data ?? []) as OrderFlat[];
+	}
+	return (data ?? []) as OrderFlat[];
+};
+
 export const searchOrders = async (query: string): Promise<OrderFlat[]> => {
 	const pattern = `%${query}%`;
 	const { data, error } = await supabase
@@ -31,6 +51,18 @@ export const searchOrders = async (query: string): Promise<OrderFlat[]> => {
 		.order("order_number", { ascending: false });
 	if (error) throw new Error(`searchOrders failed: ${error.message}`);
 	return (data ?? []) as OrderFlat[];
+};
+
+export const cancelOrder = async (id: string): Promise<void> => {
+	const { error } = await supabase
+		.from("orders")
+		.update({
+			status: "cancelled",
+			updated_at: new Date().toISOString(),
+		})
+		.eq("id", id);
+
+	if (error) throw new Error(`cancelOrder failed: ${error.message}`);
 };
 
 export const createOrder = async (
@@ -61,4 +93,27 @@ export const updateOrder = async (
 	if (error) throw new Error(`updateOrder failed: ${error.message}`);
 
 	return data as Order;
+};
+
+/** Payload for save_order RPC (updates customer, school, order in one transaction). */
+export type SaveOrderPayload = {
+	p_order_id: string;
+	p_customer_id: string | null;
+	p_customer_name: string;
+	p_customer_phone: string;
+	p_school_name: string;
+	p_school_city: string;
+	p_type: string;
+	p_status: string;
+	p_description: string | null;
+	p_release_date: string | null;
+	p_next_visit_date: string | null;
+	p_price: number | null;
+	p_deposit: number | null;
+};
+
+export const saveOrder = async (payload: SaveOrderPayload): Promise<void> => {
+	const { error } = await supabase.rpc("save_order", payload);
+
+	if (error) throw new Error(`saveOrder failed: ${error.message}`);
 };

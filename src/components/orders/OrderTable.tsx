@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 import type { OrderFlat } from "@/behavior/orders/types";
 import { ORDER_STATUS_LABEL, ORDER_TYPE_LABEL } from "@/behavior/orders/types";
 import { formatDate } from "@/lib/formatDate";
@@ -8,6 +6,9 @@ import DetailsButton from "../buttons/DetailsButton";
 
 type OrderTableProps = {
   orders: OrderFlat[];
+  searchQuery?: string;
+  expandedId?: string | null;
+  onExpandedIdChange?: (id: string | null) => void;
 };
 
 const statusClass: Record<string, string> = {
@@ -17,12 +18,14 @@ const statusClass: Record<string, string> = {
   cancelled: styles.statusCancelled,
 };
 
-const OrderTable = ({ orders }: OrderTableProps) => {
-  const navigate = useNavigate();
-  const [expandedId, setExpandedId] = useState<string | null>(null);
-
+const OrderTable = ({
+  orders,
+  searchQuery = "",
+  expandedId = null,
+  onExpandedIdChange,
+}: OrderTableProps) => {
   const toggleRow = (id: string) => {
-    setExpandedId(prev => (prev === id ? null : id));
+    onExpandedIdChange?.(expandedId === id ? null : id);
   };
 
   return (
@@ -96,7 +99,11 @@ const OrderTable = ({ orders }: OrderTableProps) => {
                 </div>
               
                 <div className={styles.detailsWrapper}>
-                  <DetailsButton orderId={order.order_id} />
+                  <DetailsButton
+                    orderId={order.order_id}
+                    searchQuery={searchQuery}
+                    expandedIdForReturn={order.order_id}
+                  />
                 </div>
               </div>
             )}

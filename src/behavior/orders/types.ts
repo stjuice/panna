@@ -32,9 +32,11 @@ export type OrderFlat = {
 	deposit?: number;
 	remaining?: number;
 
+	customer_id?: string;
 	customer_name: string;
 	customer_phone: string;
 
+	school_id?: string | null;
 	school_name?: string;
 	school_city?: string;
 };
