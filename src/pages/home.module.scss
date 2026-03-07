@@ -11,101 +11,61 @@
 	overflow: hidden;
 }
 
-.logo {
-	width: 11rem;
-	height: auto;
-	margin-bottom: 2.5rem;
-	transform-origin: center center;
-	opacity: 0;
-	transform: scale(5) translateY(25%);
-	animation: logoIntro 5.5s cubic-bezier(0.25, 0, 0.6, 1) forwards;
-	will-change: transform, opacity;
-}
-
 .buttons {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 1.25rem;
+}
+
+.buttonsReady {
+	opacity: 1;
+}
+
+.buttonsIntro {
 	opacity: 0;
-	animation: fadeIn 1s ease forwards;
-	animation-delay: 5s;
-	will-change: opacity, transform;
+	animation: fadeIn 0.8s ease forwards;
+	animation-delay: 1.8s;
+}
+
+.logo {
+	width: 11rem;
+	height: auto;
+	margin-bottom: 2.5rem;
+	transform-origin: center center;
+}
+
+.logoReady {
+	opacity: 1;
+	transform: scale(1) translateY(0);
+}
+
+.logoIntro {
+	opacity: 0;
+	transform: scale(4.5) translateY(20%);
+	animation: logoIntro 2.4s cubic-bezier(0.25, 0, 0.2, 1) forwards;
 }
 
 @keyframes logoIntro {
 	0% {
 		opacity: 0;
-		transform: scale(5) translateY(25%);
+		transform: scale(4.5) translateY(20%);
 	}
-	18% {
+
+	35% {
 		opacity: 1;
-		transform: scale(5) translateY(25%);
 	}
-	45% {
-		opacity: 1;
-		transform: scale(5) translateY(25%);
-	}
+
 	100% {
 		opacity: 1;
 		transform: scale(1) translateY(0);
 	}
 }
 
-@media (max-width: 1024px) {
-	.logo {
-		transform: scale(4) translateY(25%);
-	}
-
-	@keyframes logoIntro {
-		0% {
-			opacity: 0;
-			transform: scale(4) translateY(25%);
-		}
-		18% {
-			opacity: 1;
-			transform: scale(4) translateY(25%);
-		}
-		45% {
-			opacity: 1;
-			transform: scale(4) translateY(25%);
-		}
-		100% {
-			opacity: 1;
-			transform: scale(1) translateY(0);
-		}
-	}
-}
-
-@media (max-width: 600px) {
-	.logo {
-		transform: scale(2) translateY(20%);
-	}
-
-	@keyframes logoIntro {
-		0% {
-			opacity: 0;
-			transform: scale(2) translateY(20%);
-		}
-		18% {
-			opacity: 1;
-			transform: scale(2) translateY(20%);
-		}
-		45% {
-			opacity: 1;
-			transform: scale(2) translateY(20%);
-		}
-		100% {
-			opacity: 1;
-			transform: scale(1) translateY(0);
-		}
-	}
-}
-
 @keyframes fadeIn {
 	from {
 		opacity: 0;
-		transform: translateY(1rem);
+		transform: translateY(10px);
 	}
 	to {
 		opacity: 1;
