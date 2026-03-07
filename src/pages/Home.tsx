@@ -20,7 +20,7 @@ const HomePage = () => {
 	return (
 		<div className={styles.container}>
 			<img
-				src="/logo_for_white.png"
+				src={`${import.meta.env.BASE_URL}logo_for_white.png`}
 				alt="Panna wedding salon"
 				className={`${styles.logo} ${playIntro ? styles.logoIntro : styles.logoReady}`}
 			/>
