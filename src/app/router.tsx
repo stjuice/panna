@@ -6,7 +6,7 @@ import OrderDetailsPage from "@/pages/OrderDetailsPage";
 
 export const AppRouter = () => {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "")}>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/orders" element={<OrdersListPage />} />

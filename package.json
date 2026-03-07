@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "homepage": "https://stjuice.github.io/panna",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "lint": "eslint .",
     "test": "vitest"
   },
@@ -24,6 +27,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.3.4",
     "eslint": "^9",
+    "gh-pages": "^6.3.0",
     "jsdom": "^25.0.0",
     "sass": "^1.93.0",
     "typescript": "^5",
