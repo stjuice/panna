@@ -51,15 +51,25 @@ const OrderTable = ({
               className={`${styles.rowHeader} ${expanded ? styles.rowExpandedHeader : ""}`}
               onClick={() => toggleRow(order.order_id)}
             >
-              <div className={styles.nameCell}>{order.customer_name}</div>
-
-              <div>{ORDER_TYPE_LABEL[order.type]}</div>
-
-              <div className={statusClass[order.status] ?? ""}>
-                {ORDER_STATUS_LABEL[order.status]}
+              <div className={`${styles.mobileField} ${styles.nameCell}`}>
+                <span className={styles.mobileLabel}>Ім'я</span>
+                <span>{order.customer_name}</span>
               </div>
 
-              <div>{formatDate(order.release_date)}</div>
+              <div className={styles.mobileField}>
+                <span className={styles.mobileLabel}>Тип</span>
+                <span>{ORDER_TYPE_LABEL[order.type]}</span>
+              </div>
+
+              <div className={`${styles.mobileField} ${statusClass[order.status] ?? ""}`}>
+                <span className={styles.mobileLabel}>Статус</span>
+                <span>{ORDER_STATUS_LABEL[order.status]}</span>
+              </div>
+
+              <div className={styles.mobileField}>
+                <span className={styles.mobileLabel}>Видача</span>
+                <span>{formatDate(order.release_date)}</span>
+              </div>
             </div>
 
             {expanded && (

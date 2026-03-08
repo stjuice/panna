@@ -7,7 +7,7 @@ import type { OrderForm, OrderStatus } from "@/behavior/orders/types";
 import { createCustomer } from "@/api/customers.api";
 import { findOrCreateSchool } from "@/api/schools.api";
 import { cancelOrder, createOrder, saveOrder } from "@/api/orders.api";
-import styles from "@/styles/orders.module.scss";
+import styles from "@/styles/orderDetails.module.scss";
 import OrderDetailsHeader from "@/components/orders/order-details/OrderDetailsHeader";
 import CustomerSection from "@/components/orders/order-details/CustomerSection";
 import TypeSelector from "@/components/orders/order-details/TypeSelector";
