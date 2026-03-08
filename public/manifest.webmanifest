@@ -2,7 +2,7 @@
   "name": "Panna Wedding Salon",
   "short_name": "Panna",
   "start_url": "/panna/",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#7794b6",
   "orientation": "landscape",
