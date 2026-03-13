@@ -99,6 +99,9 @@ $secondary: $whiteGradient padding-box, $grayGradient border-box;
 }
 
 .plus {
+    position: absolute;
+    right: -2.3rem;
+    top: 0;
     margin-left: -0.5rem;
     font-family: system-ui, sans-serif;
     font-size: 4rem;
