@@ -6,6 +6,10 @@
 
 .topBar {
 	@include layout.topBar;
+
+	> *:last-child {
+		margin-left: auto;
+	}
 }
 
 .pageTitle {
@@ -21,6 +25,11 @@
 
 	.topBar > *:first-child {
 		align-self: flex-start;
+	}
+
+	.topBar > *:last-child {
+		margin-left: 0;
+		align-self: flex-end;
 	}
 
 	.pageTitle {

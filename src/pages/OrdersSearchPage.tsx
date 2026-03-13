@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchLastModifiedOrders, searchOrders } from "@/api/orders.api";
 import OrderTable from "@/components/orders/OrderTable";
 import BackButton from "@/components/buttons/BackButton";
+import CreateNewButton from "@/components/buttons/CreateNewButton";
 
 const SEARCH_PARAM_Q = "q";
 const SEARCH_PARAM_EXPANDED = "expanded";
@@ -57,6 +58,7 @@ const OrdersSearchPage = () => {
 			<div className={styles.topBar}>
 				<BackButton to="/" text="Назад"/>
 				<h1 className={styles.pageTitle}>Пошук замовлення</h1>
+				<CreateNewButton to="/orders/new" />
 			</div>
 			<div className={styles.searchWrapper}>
 				<input
@@ -74,7 +76,7 @@ const OrdersSearchPage = () => {
 				</div>
 			) : (
 				<div className={styles.resultCount}>
-					Останні&nbsp;<span className={styles.numeric}>{LAST_MODIFIED_LIMIT}</span>&nbsp;замовлень
+					Найновіші&nbsp;<span className={styles.numeric}>{LAST_MODIFIED_LIMIT}</span>&nbsp;замовлень
 				</div>
 			)}
 			{isLoading
