@@ -1,5 +1,5 @@
 import type { OrderFlat } from "@/behavior/orders/types";
-import { ORDER_STATUS_LABEL, ORDER_TYPE_LABEL } from "@/behavior/orders/types";
+import { ORDER_TYPE_LABEL } from "@/behavior/orders/types";
 import { formatDate } from "@/lib/formatDate";
 import styles from "@/styles/search.module.scss";
 import DetailsButton from "../buttons/DetailsButton";
@@ -9,13 +9,6 @@ type OrderTableProps = {
   searchQuery?: string;
   expandedId?: string | null;
   onExpandedIdChange?: (id: string | null) => void;
-};
-
-const statusClass: Record<string, string> = {
-  new: styles.statusNew,
-  fitting: styles.statusFitting,
-  released: styles.statusReleased,
-  cancelled: styles.statusCancelled,
 };
 
 const OrderTable = ({
@@ -32,10 +25,10 @@ const OrderTable = ({
     <div className={styles.orderList}>
       
       <div className={styles.tableHead}>
-        <div>Ім'я</div>
+        <div>Опис</div>
         <div>Тип</div>
-        <div>Статус</div>
-        <div>Видача</div>
+        <div>Школа</div>
+        <div>Наступний візит</div>
       </div>
 
       {orders.map(order => {
@@ -51,9 +44,9 @@ const OrderTable = ({
               className={`${styles.rowHeader} ${expanded ? styles.rowExpandedHeader : ""}`}
               onClick={() => toggleRow(order.order_id)}
             >
-              <div className={`${styles.mobileField} ${styles.nameCell}`}>
-                <span className={styles.mobileLabel}>Ім'я</span>
-                <span>{order.customer_name}</span>
+              <div className={`${styles.mobileField} ${styles.descCell}`}>
+                <span className={styles.mobileLabel}>Опис</span>
+                <span>{order.description ?? "—"}</span>
               </div>
 
               <div className={styles.mobileField}>
@@ -61,14 +54,14 @@ const OrderTable = ({
                 <span>{ORDER_TYPE_LABEL[order.type]}</span>
               </div>
 
-              <div className={`${styles.mobileField} ${statusClass[order.status] ?? ""}`}>
-                <span className={styles.mobileLabel}>Статус</span>
-                <span>{ORDER_STATUS_LABEL[order.status]}</span>
+              <div className={styles.mobileField}>
+                <span className={styles.mobileLabel}>Школа</span>
+                <span>{order.school_name ?? "—"}</span>
               </div>
 
               <div className={styles.mobileField}>
-                <span className={styles.mobileLabel}>Видача</span>
-                <span>{formatDate(order.release_date)}</span>
+                <span className={styles.mobileLabel}>Наступний візит</span>
+                <span>{formatDate(order.next_visit_date)}</span>
               </div>
             </div>
 
