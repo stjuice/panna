@@ -1,6 +1,6 @@
 import type { OrderFlat } from "behavior/orders";
 
-export type OrderCardProps = {
+export type OrderLineProps = {
 	order: OrderFlat;
 	onClick?: (id: string) => void;
 };

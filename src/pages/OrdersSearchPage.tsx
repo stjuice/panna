@@ -67,7 +67,7 @@ const OrdersSearchPage = () => {
 					value={query}
 					onChange={(e) => handleQueryChange(e.target.value)}
 				/>
-				<span className={styles.searchIcon}>🔍</span>
+				<span className={styles.searchIcon}>🔍</span>{/*change to simple search icon*/}
 			</div>
 			{query.trim() ? (
 				<div className={styles.resultCount}>

@@ -2,7 +2,8 @@ import styles from "styles/search.module.scss";
 import type { OrderFlat } from "behavior/orders";
 import { ORDER_TYPE_LABEL } from "behavior/orders";
 import { formatDate } from "lib/formatDate";
-import { DetailsButton } from "../buttons";
+import ExpandedCard from "./ExpandedCard";
+import { Field } from "./Field";
 
 type OrderTableProps = {
   orders: OrderFlat[];
@@ -23,7 +24,7 @@ const OrderTable = ({
 
   return (
     <div className={styles.orderList}>
-      
+
       <div className={styles.tableHead}>
         <div>Опис</div>
         <div>Тип</div>
@@ -44,67 +45,36 @@ const OrderTable = ({
               className={`${styles.rowHeader} ${expanded ? styles.rowExpandedHeader : ""}`}
               onClick={() => toggleRow(order.order_id)}
             >
-              <div className={`${styles.mobileField} ${styles.descCell}`}>
-                <span className={styles.mobileLabel}>Опис</span>
-                <span>{order.description ?? "—"}</span>
-              </div>
+              <Field
+                label="Опис"
+                value={order.description ?? "—"}
+                classNameField={`${styles.mobileField}`}
+                classNameLabel={styles.mobileLabel}
+              />
 
-              <div className={styles.mobileField}>
-                <span className={styles.mobileLabel}>Тип</span>
-                <span>{ORDER_TYPE_LABEL[order.type]}</span>
-              </div>
+              <Field
+                label="Тип"
+                value={ORDER_TYPE_LABEL[order.type]}
+                classNameField={styles.mobileField}
+                classNameLabel={styles.mobileLabel}
+              />
 
-              <div className={styles.mobileField}>
-                <span className={styles.mobileLabel}>Школа</span>
-                <span>{order.school_name ?? "—"}</span>
-              </div>
+              <Field
+                label="Школа"
+                value={order.school_name ?? "—"}
+                classNameField={styles.mobileField}
+                classNameLabel={styles.mobileLabel}
+              />
 
-              <div className={styles.mobileField}>
-                <span className={styles.mobileLabel}>Наступний візит</span>
-                <span>{formatDate(order.next_visit_date)}</span>
-              </div>
+              <Field
+                label="Наступний візит"
+                value={formatDate(order.next_visit_date)}
+                classNameField={styles.mobileField}
+                classNameLabel={styles.mobileLabel}
+              />
             </div>
 
-            {expanded && (
-              <div className={styles.rowExpanded}>
-                <div className={styles.infoGrid}>           
-                  <div className={styles.field}>
-                    <span className={styles.label}>Місто:</span>
-                    <span>{order.school_city ?? "—"}</span>
-                  </div>
-                  <div className={styles.field}>
-                    <span className={styles.label}>Школа:</span>
-                    <span>{order.school_name ?? "—"}</span>
-                  </div>
-              
-                 {/* Uncomment when payment functionality is implemented
-
-                 <div className={styles.field}>
-                    <span className={styles.label}>Очікує:</span>
-                    <span>{order.remaining ?? "—"} грн</span>
-                  </div>
-              
-                  <div className={styles.field}>
-                    <span className={styles.label}>Ціна:</span>
-                    <span>{order.price ?? "—"} грн</span>
-                  </div>
-              
-                  <div className={styles.field}>
-                    <span className={styles.label}>Аванс:</span>
-                    <span>{order.deposit ?? "—"} грн</span>
-                  </div>*/}
-                           
-                <div className={styles.detailsWrapper}>
-                  <DetailsButton
-                    orderId={order.order_id}
-                    searchQuery={searchQuery}
-                    expandedIdForReturn={order.order_id}
-                  />
-                </div>
-                </div>
-              
-              </div>
-            )}
+            {expanded && <ExpandedCard order={order} searchQuery={searchQuery} />}
 
           </div>
         );
