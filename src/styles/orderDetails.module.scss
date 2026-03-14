@@ -12,7 +12,6 @@
 	.topRow {
 	  flex-direction: column;
 	  align-items: center;
-	  gap: 0.5rem;
 	}
   
 	.topRow > *:first-child {
@@ -24,7 +23,12 @@
 	  transform: none !important;
 	  text-align: center;
 	  width: 100%;
+    margin-top: 2rem;
 	}
+
+  .section:first-of-type {
+    margin-top: 1.5rem !important;
+  }
   
   }
 

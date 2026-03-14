@@ -37,8 +37,12 @@
     position: static;
     transform: none;
     text-align: center;
-    margin-top: 0.3rem;
+    margin-top: 2rem;
   }
+
+	.searchWrapper {
+		margin-top: 1.5rem !important;
+	}
 }
 
 .orderList {
