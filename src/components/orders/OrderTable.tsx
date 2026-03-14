@@ -67,11 +67,21 @@ const OrderTable = ({
 
             {expanded && (
               <div className={styles.rowExpanded}>
-                <div className={styles.infoGrid}>
-              
+                <div className={styles.infoGrid}>           
                   <div className={styles.field}>
-                    <span className={styles.label}>Номер:</span>
-                    <span>{order.customer_phone}</span>
+                    <span className={styles.label}>Місто:</span>
+                    <span>{order.school_city ?? "—"}</span>
+                  </div>
+                  <div className={styles.field}>
+                    <span className={styles.label}>Школа:</span>
+                    <span>{order.school_name ?? "—"}</span>
+                  </div>
+              
+                 {/* Uncomment when payment functionality is implemented
+
+                 <div className={styles.field}>
+                    <span className={styles.label}>Очікує:</span>
+                    <span>{order.remaining ?? "—"} грн</span>
                   </div>
               
                   <div className={styles.field}>
@@ -80,27 +90,10 @@ const OrderTable = ({
                   </div>
               
                   <div className={styles.field}>
-                    <span className={styles.label}>Місто:</span>
-                    <span>{order.school_city ?? "—"}</span>
-                  </div>
-              
-                  <div className={styles.field}>
                     <span className={styles.label}>Аванс:</span>
                     <span>{order.deposit ?? "—"} грн</span>
-                  </div>
-              
-                  <div className={styles.field}>
-                    <span className={styles.label}>Школа:</span>
-                    <span>{order.school_name ?? "—"}</span>
-                  </div>
-              
-                  <div className={styles.field}>
-                    <span className={styles.label}>Очікує:</span>
-                    <span>{order.remaining ?? "—"} грн</span>
-                  </div>
-              
-                </div>
-              
+                  </div>*/}
+                           
                 <div className={styles.detailsWrapper}>
                   <DetailsButton
                     orderId={order.order_id}
@@ -108,6 +101,8 @@ const OrderTable = ({
                     expandedIdForReturn={order.order_id}
                   />
                 </div>
+                </div>
+              
               </div>
             )}
 
