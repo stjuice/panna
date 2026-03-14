@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchOrder } from "@/api/orders.api";
+import { fetchOrder } from "api/orders.api";
 
 type UseOrderOptions = {
 	enabled?: boolean;

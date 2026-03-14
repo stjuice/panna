@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
-import { useOrder } from "@/behavior/orders/useOrder";
-import { orderToForm, getDefaultOrderForm } from "@/behavior/orders/orderFormState";
-import type { OrderForm, OrderStatus } from "@/behavior/orders/types";
-import { createCustomer } from "@/api/customers.api";
-import { findOrCreateSchool } from "@/api/schools.api";
-import { cancelOrder, createOrder, saveOrder } from "@/api/orders.api";
-import styles from "@/styles/orderDetails.module.scss";
-import OrderDetailsHeader from "@/components/orders/order-details/OrderDetailsHeader";
-import CustomerSection from "@/components/orders/order-details/CustomerSection";
-import TypeSelector from "@/components/orders/order-details/TypeSelector";
-import DescriptionSection from "@/components/orders/order-details/DescriptionSection";
-import FittingDate from "@/components/orders/order-details/FittingDate";
-import PaymentSection from "@/components/orders/order-details/PaymentSection";
-import OrderDetailsActions from "@/components/orders/order-details/OrderDetailsActions";
-import BackButton from "@/components/buttons/BackButton";
+import { useOrder } from "behavior/orders/useOrder";
+import { orderToForm, getDefaultOrderForm } from "behavior/orders/orderFormState";
+import type { OrderForm, OrderStatus } from "behavior/orders/types";
+import { createCustomer } from "api/customers.api";
+import { findOrCreateSchool } from "api/schools.api";
+import { cancelOrder, createOrder, saveOrder } from "api/orders.api";
+import styles from "styles/orderDetails.module.scss";
+import OrderDetailsHeader from "components/orders/order-details/OrderDetailsHeader";
+import CustomerSection from "components/orders/order-details/CustomerSection";
+import TypeSelector from "components/orders/order-details/TypeSelector";
+import DescriptionSection from "components/orders/order-details/DescriptionSection";
+import FittingDate from "components/orders/order-details/FittingDate";
+import PaymentSection from "components/orders/order-details/PaymentSection";
+import OrderDetailsActions from "components/orders/order-details/OrderDetailsActions";
+import { BackButton } from "components/buttons";
 
 type Mode = "create" | "edit";
 

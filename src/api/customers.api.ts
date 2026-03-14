@@ -1,5 +1,5 @@
-import { supabase } from "@/lib/supabase";
-import type { Customer } from "@/behavior/customers/types";
+import { supabase } from "lib/supabase";
+import type { Customer } from "behavior/customers/types";
 
 export const fetchCustomers = async (): Promise<Customer[]> => {
 	const { data, error } = await supabase

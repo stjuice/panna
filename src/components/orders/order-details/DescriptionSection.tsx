@@ -1,4 +1,4 @@
-import styles from "@/styles/orderDetails.module.scss";
+import styles from "styles/orderDetails.module.scss";
 
 type DescriptionSectionProps = {
 	value: string;

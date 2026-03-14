@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { toDisplayDate, parseDisplayDate } from "@/lib/formatDate";
+import { toDisplayDate, parseDisplayDate } from "lib/formatDate";
 import RoundedInput from "./RoundedInput";
 
 type RoundedDateInputProps = {

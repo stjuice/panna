@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createCustomer } from "@/api/customers.api";
-import { createOrder } from "@/api/orders.api";
+import { createCustomer } from "api/customers.api";
+import { createOrder } from "api/orders.api";
 import type { OrderForm } from "./types";
 
 export const useCreateOrder = () => {

@@ -10,7 +10,7 @@ type SelectButtonProps = {
 	};
 };
 
-const SelectButton = ({
+const Select = ({
 	value,
 	onChange,
 	type,
@@ -20,4 +20,4 @@ const SelectButton = ({
 	return <Button key={type.value} className={className} onClick={() => onChange(type.value)} size="medium">{type.label}</Button>;
 };
 
-export default SelectButton;
+export default Select;

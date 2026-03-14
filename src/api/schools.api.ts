@@ -1,5 +1,5 @@
-import { supabase } from "@/lib/supabase";
-import type { School } from "@/behavior/schools/types";
+import { supabase } from "lib/supabase";
+import type { School } from "behavior/schools/types";
 
 /**
  * Find school by name + city, or create one if not found.

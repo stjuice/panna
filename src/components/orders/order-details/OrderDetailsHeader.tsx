@@ -1,7 +1,7 @@
-import type { OrderStatus } from "@/behavior/orders/types";
-import { ORDER_STATUS_LABEL } from "@/behavior/orders/types";
-import BackButton from "@/components/buttons/BackButton";
-import styles from "@/styles/orderDetails.module.scss";
+import type { OrderStatus } from "behavior/orders/types";
+import { ORDER_STATUS_LABEL } from "behavior/orders/types";
+import { BackButton } from "components/buttons";
+import styles from "styles/orderDetails.module.scss";
 import { useState } from "react";
 
 type OrderDetailsHeaderProps = {

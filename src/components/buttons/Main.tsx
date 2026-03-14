@@ -1,7 +1,7 @@
 import styles from "./buttons.module.scss";
 import Button from "./Button";
 
-type SecondaryButtonProps = {
+type MainButtonProps = {
 	to?: string;
 	size?: "default" | "medium" | "small";
 	onClick?: () => void;
@@ -9,24 +9,18 @@ type SecondaryButtonProps = {
 	children: React.ReactNode;
 };
 
-const SecondaryButton = ({
-	to,
-	size,
-	onClick,
-	disabled,
-	children,
-}: SecondaryButtonProps) => {
+const Main = ({ to, size, onClick, disabled, children }: MainButtonProps) => {
 	return (
 		<Button
 			to={to}
 			size={size}
 			onClick={onClick}
 			disabled={disabled}
-			className={styles.secondary}
+			className={styles.main}
 		>
 			{children}
 		</Button>
 	);
 };
 
-export default SecondaryButton;
+export default Main;

@@ -1,5 +1,5 @@
-import RoundedDateInput from "@/components/inputs/RoundedDateInput";
-import styles from "@/styles/orderDetails.module.scss";
+import RoundedDateInput from "components/inputs/RoundedDateInput";
+import styles from "styles/orderDetails.module.scss";
 
 type FittingDateProps = {
 	value: string;

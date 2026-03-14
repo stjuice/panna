@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./home.module.scss";
-import MainButton from "@/components/buttons/MainButton";
-import SecondaryButton from "@/components/buttons/SecondaryButton";
+import { MainButton, SecondaryButton } from "components/buttons";
 
 const HomePage = () => {
 	const [playIntro] = useState(() => {

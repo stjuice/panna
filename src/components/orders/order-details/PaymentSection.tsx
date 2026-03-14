@@ -1,5 +1,5 @@
-import RoundedInput from "@/components/inputs/RoundedInput";
-import styles from "@/styles/orderDetails.module.scss";
+import RoundedInput from "components/inputs/RoundedInput";
+import styles from "styles/orderDetails.module.scss";
 
 type PaymentSectionProps = {
 	price: number | "";

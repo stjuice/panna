@@ -1,11 +1,10 @@
-import styles from "@/styles/search.module.scss";
+import styles from "styles/search.module.scss";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { fetchLastModifiedOrders, searchOrders } from "@/api/orders.api";
-import OrderTable from "@/components/orders/OrderTable";
-import BackButton from "@/components/buttons/BackButton";
-import CreateNewButton from "@/components/buttons/CreateNewButton";
+import { fetchLastModifiedOrders, searchOrders } from "api/orders.api";
+import OrderTable from "components/orders/OrderTable";
+import { BackButton, CreateNewButton } from "components/buttons";
 
 const SEARCH_PARAM_Q = "q";
 const SEARCH_PARAM_EXPANDED = "expanded";

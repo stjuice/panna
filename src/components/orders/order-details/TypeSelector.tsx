@@ -1,7 +1,7 @@
-import type { OrderType } from "@/behavior/orders/types";
-import { ORDER_TYPE_LABEL } from "@/behavior/orders/types";
-import SelectButton from "@/components/buttons/SelectButton";
-import styles from "@/styles/orderDetails.module.scss";
+import type { OrderType } from "behavior/orders/types";
+import { ORDER_TYPE_LABEL } from "behavior/orders/types";
+import { SelectButton } from "components/buttons";
+import styles from "styles/orderDetails.module.scss";
 
 const TYPE_OPTIONS = (Object.entries(ORDER_TYPE_LABEL) as [OrderType, string][]).map(
 	([value, label]) => ({ value, label }),

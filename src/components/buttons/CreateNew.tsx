@@ -8,7 +8,7 @@ type CreateNewButtonProps = {
 	text?: string;
 };
 
-const CreateNewButton = ({ to, size = "small", onClick, text = "Нове" }: CreateNewButtonProps) => {
+const CreateNew = ({ to, size = "small", onClick, text = "Нове" }: CreateNewButtonProps) => {
 	return (
 		<div className={styles.createContainer}>
 			<Button to={to} size={size} onClick={onClick} className={styles.compact}>
@@ -19,4 +19,4 @@ const CreateNewButton = ({ to, size = "small", onClick, text = "Нове" }: Cre
 	);
 };
 
-export default CreateNewButton;
+export default CreateNew;

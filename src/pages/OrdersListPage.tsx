@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import { useOrders } from "@/behavior/orders/useOrders";
-import OrderList from "@/components/orders/OrderList";
-import styles from "@/styles/orders.module.scss";
+import { useOrders } from "behavior/orders/useOrders";
+import OrderList from "components/orders/OrderList";
+import styles from "styles/orders.module.scss";
 
 const OrdersListPage = () => {
 	const { data: orders, isLoading, error } = useOrders();

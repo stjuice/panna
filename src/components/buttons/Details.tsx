@@ -8,7 +8,7 @@ type DetailsButtonProps = {
 	onClick?: () => void;
 };
 
-const DetailsButton = ({
+const Details = ({
 	orderId,
 	searchQuery,
 	expandedIdForReturn,
@@ -27,4 +27,4 @@ const DetailsButton = ({
 	);
 };
 
-export default DetailsButton;
+export default Details;

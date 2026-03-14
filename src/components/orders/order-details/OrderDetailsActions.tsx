@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import MainButton from "@/components/buttons/MainButton";
-import SecondaryButton from "@/components/buttons/SecondaryButton";
-import styles from "@/styles/orderDetails.module.scss";
-import ActionLink from "@/components/buttons/ActionLink";
+import { ActionLink, MainButton, SecondaryButton } from "components/buttons";
+import styles from "styles/orderDetails.module.scss";
 
 type OrderDetailsActionsProps = {
 	onSave: () => void;

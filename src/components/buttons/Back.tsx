@@ -8,7 +8,7 @@ type BackButtonProps = {
 	text: string;
 };
 
-const BackButton = ({ to, size = "small", onClick, text }: BackButtonProps) => {
+const Back = ({ to, size = "small", onClick, text }: BackButtonProps) => {
 	return (
 		<div className={styles.backContainer}>
       <span className={styles.arrow}>←</span>
@@ -19,4 +19,4 @@ const BackButton = ({ to, size = "small", onClick, text }: BackButtonProps) => {
 	);
 };
 
-export default BackButton;
+export default Back;

@@ -1,8 +1,8 @@
-import type { OrderFlat } from "@/behavior/orders/types";
-import { ORDER_TYPE_LABEL } from "@/behavior/orders/types";
-import { formatDate } from "@/lib/formatDate";
-import styles from "@/styles/search.module.scss";
-import DetailsButton from "../buttons/DetailsButton";
+import type { OrderFlat } from "behavior/orders/types";
+import { ORDER_TYPE_LABEL } from "behavior/orders/types";
+import { formatDate } from "lib/formatDate";
+import styles from "styles/search.module.scss";
+import { DetailsButton } from "../buttons";
 
 type OrderTableProps = {
   orders: OrderFlat[];

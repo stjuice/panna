@@ -1,7 +1,7 @@
-import type { OrderType } from "@/behavior/orders/types";
-import RoundedInput from "@/components/inputs/RoundedInput";
-import RoundedDateInput from "@/components/inputs/RoundedDateInput";
-import styles from "@/styles/orderDetails.module.scss";
+import type { OrderType } from "behavior/orders/types";
+import RoundedInput from "components/inputs/RoundedInput";
+import RoundedDateInput from "components/inputs/RoundedDateInput";
+import styles from "styles/orderDetails.module.scss";
 
 type CustomerSectionProps = {
 	orderType: OrderType;
