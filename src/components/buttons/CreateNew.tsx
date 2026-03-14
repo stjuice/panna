@@ -13,7 +13,6 @@ const CreateNew = ({ to, size = "small", onClick, text = "Нове" }: CreateNew
 		<div className={styles.createContainer}>
 			<Button to={to} size={size} onClick={onClick} className={styles.compact}>
 				{text}
-			  <span className={styles.plus}>+</span>
 			</Button>
 		</div>
 	);
