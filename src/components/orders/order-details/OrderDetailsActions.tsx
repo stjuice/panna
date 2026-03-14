@@ -4,17 +4,15 @@ import styles from "styles/orderDetails.module.scss";
 
 type OrderDetailsActionsProps = {
 	onSave: () => void;
-	onCancelOrder: () => void;
+	onOrderDelete: () => void;
 	isSaving?: boolean;
-	/** When true (create mode), "Скасувати замовлення" is hidden. */
 	isCreateMode?: boolean;
-	/** Where to navigate on Cancel / Back (e.g. /search?q=...). */
 	backToSearch?: string;
 };
 
 const OrderDetailsActions = ({
 	onSave,
-	onCancelOrder,
+	onOrderDelete,
 	isSaving = false,
 	isCreateMode = false,
 	backToSearch = "/search",
@@ -25,7 +23,7 @@ const OrderDetailsActions = ({
 		<section className={styles.actionsSection}>
 			<div className={styles.actions}>
 				<SecondaryButton onClick={() => navigate(backToSearch)} size="medium">
-					Скасувати
+					Відмінити
 				</SecondaryButton>
 				<MainButton onClick={onSave} disabled={isSaving} size="medium">
 					{isSaving ? "Збереження…" : "Зберегти"}
@@ -33,8 +31,8 @@ const OrderDetailsActions = ({
 			</div>
 			{!isCreateMode && (
 				<div>
-					<ActionLink className={styles.deleteButton} onClick={onCancelOrder}>
-						Скасувати замовлення
+					<ActionLink className={styles.deleteButton} onClick={onOrderDelete}>
+						Видалити замовлення
 					</ActionLink>
 				</div>
 			)}

@@ -121,7 +121,7 @@ const OrderDetailsPage = () => {
 
 			<OrderDetailsActions
 				onSave={handleSave}
-				onCancelOrder={handleCancelOrder}
+				onOrderDelete={handleCancelOrder}
 				isSaving={isSaving}
 				isCreateMode={isCreateMode}
 				backToSearch={returnSearchUrl}

@@ -53,16 +53,13 @@ export const searchOrders = async (query: string): Promise<OrderFlat[]> => {
 	return (data ?? []) as OrderFlat[];
 };
 
-export const cancelOrder = async (id: string): Promise<void> => {
+export const deleteOrder = async (id: string): Promise<void> => {
 	const { error } = await supabase
 		.from("orders")
-		.update({
-			status: "cancelled",
-			updated_at: new Date().toISOString(),
-		})
+		.delete()
 		.eq("id", id);
 
-	if (error) throw new Error(`cancelOrder failed: ${error.message}`);
+	if (error) throw new Error(`deleteOrder failed: ${error.message}`);
 };
 
 export const createOrder = async (

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { createCustomer } from "api/customers.api";
 import { findOrCreateSchool } from "api/schools.api";
-import { cancelOrder, createOrder, saveOrder } from "api/orders.api";
+import { deleteOrder, createOrder, saveOrder } from "api/orders.api";
 
 export const useOrderActions = (orderId: string) => {
 	const queryClient = useQueryClient();
@@ -71,7 +71,7 @@ export const useOrderActions = (orderId: string) => {
 	};
 
 	const cancel = async (): Promise<void> => {
-		await cancelOrder(orderId);
+		await deleteOrder(orderId);
 		queryClient.invalidateQueries({ queryKey: ["order", orderId] });
 		queryClient.invalidateQueries({ queryKey: ["orders"] });
 	};
