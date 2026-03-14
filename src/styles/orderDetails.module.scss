@@ -20,8 +20,8 @@
 	}
   
 	.pageTitle {
-	  position: static;
-	  transform: none;
+	  position: static !important;
+	  transform: none !important;
 	  text-align: center;
 	  width: 100%;
 	}
@@ -69,7 +69,6 @@
 
 .statusValue {
   display: inline-block;
-  min-width: 8rem;
   font-size: 1.2rem;
   color: #555;
   cursor: pointer;

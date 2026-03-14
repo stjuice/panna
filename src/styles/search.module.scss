@@ -17,31 +17,31 @@
 }
 
 @media (max-width: 599px) {
+
 	.topBar {
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
+	  flex-wrap: wrap;
+	  align-items: center;
 	}
-
+  
 	.topBar > *:first-child {
-		align-self: flex-start;
+	  order: 1;
 	}
-
+  
 	.topBar > *:last-child {
-		margin-left: 0;
-		align-self: flex-end;
+	  order: 2;
+	  margin-left: auto;
 	}
-
+  
 	.pageTitle {
-		position: static;
-		transform: none;
-		left: auto;
-		align-self: stretch;
-		text-align: center;
-		display: block;
-		width: 100%;
+	  order: 3;
+	  width: 100%;
+	  position: static;
+	  transform: none;
+	  text-align: center;
+	  margin-top: 0.3rem;
 	}
-}
+  
+  }
 
 .orderList {
 	display: flex;
