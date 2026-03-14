@@ -33,3 +33,17 @@ export const findOrCreateSchool = async (
 
 	return created as School;
 };
+
+export const searchSchools = async (query: string): Promise<School[]> => {
+	if (!query.trim()) return [];
+
+	const { data, error } = await supabase
+		.from("schools")
+		.select("*")
+		.ilike("name", `%${query}%`)
+		.limit(3);
+
+	if (error) throw error;
+
+	return data as School[];
+};

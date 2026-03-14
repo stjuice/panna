@@ -1,0 +1,33 @@
+.wrapper {
+	position: relative;
+}
+
+.dropdown {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+
+	z-index: 10;
+}
+
+.item {
+	padding: 10px 14px;
+	cursor: pointer;
+
+	display: flex;
+	justify-content: space-between;
+
+	&:hover {
+		background: #f4f4f4;
+	}
+}
+
+.city {
+	color: #777;
+	font-size: 13px;
+}

@@ -2,6 +2,7 @@ import styles from "styles/orderDetails.module.scss";
 import type { OrderType } from "behavior/orders";
 import RoundedInput from "components/inputs/RoundedInput";
 import RoundedDateInput from "components/inputs/RoundedDateInput";
+import { SchoolTypeahead } from "./SchoolTypeahead";
 
 type CustomerSectionProps = {
 	orderType: OrderType;
@@ -42,11 +43,15 @@ const CustomerSection = ({ orderType, form, onChange }: CustomerSectionProps) =>
 							value={form.school_city}
 							onChange={(e) => onChange({ school_city: e.target.value })}
 						/>
-						<RoundedInput
-							label="Школа"
-							placeholder="Школа / учбовий заклад"
+						<SchoolTypeahead
 							value={form.school_name}
-							onChange={(e) => onChange({ school_name: e.target.value })}
+							onChange={(value) => onChange({ school_name: value })}
+							onSelect={(school) =>
+								onChange({
+									school_name: school.name,
+									school_city: school.city ?? "",
+								})
+							}
 						/>
 					</>
 				)}

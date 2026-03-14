@@ -1,10 +1,10 @@
 import styles from "styles/orderDetails.module.scss";
-import type { OrderForm, OrderStatus } from "behavior/orders";
+import type { OrderForm } from "behavior/orders";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { useOrders, useOrderActions, orderToForm, getDefaultOrderForm } from "behavior/orders";
 import OrderDetailsHeader from "components/orders/order-details/OrderDetailsHeader";
-import CustomerSection from "components/orders/order-details/CustomerSection";
+import { CustomerSection } from "components/customer";
 import TypeSelector from "components/orders/order-details/TypeSelector";
 import DescriptionSection from "components/orders/order-details/DescriptionSection";
 import FittingDate from "components/orders/order-details/FittingDate";
