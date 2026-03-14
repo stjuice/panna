@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useOrders } from "behavior/orders/useOrders";
+import { useOrders } from "behavior/orders";
 import OrderList from "components/orders/OrderList";
 import styles from "styles/orders.module.scss";
 

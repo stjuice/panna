@@ -1,20 +1,6 @@
 export type OrderType = "graduation" | "wedding" | "party" | "other";
 
-export const ORDER_TYPE_LABEL: Record<OrderType, string> = {
-	graduation: "випускна",
-	wedding: "весільна",
-	party: "вечірня",
-	other: "інша",
-};
-
 export type OrderStatus = "new" | "fitting" | "released" | "cancelled";
-
-export const ORDER_STATUS_LABEL: Record<OrderStatus, string> = {
-	new: "нове",
-	fitting: "примірка",
-	released: "видано",
-	cancelled: "скасовано",
-};
 
 export type OrderFlat = {
 	order_id: string;
@@ -82,4 +68,10 @@ export type OrderForm = {
 	deposit: number | "";
 	release_date: string;
 	next_visit_date: string;
+};
+
+export type UseOrdersResult<T> = {
+	data: T | undefined;
+	isLoading: boolean;
+	error: Error | null;
 };

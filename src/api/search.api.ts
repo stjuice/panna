@@ -1,5 +1,5 @@
+import type { OrderFlat } from "behavior/orders";
 import { supabase } from "lib/supabase";
-import type { OrderFlat } from "behavior/orders/types";
 
 const VIEW = "v_orders_flat";
 

@@ -1,4 +1,4 @@
-import type { OrderFlat } from "behavior/orders/types";
+import type { OrderFlat } from "behavior/orders";
 
 export type OrderCardProps = {
 	order: OrderFlat;

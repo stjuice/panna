@@ -1,8 +1,8 @@
+import styles from "styles/orders.module.scss";
+import type { OrderCardProps } from "./types";
 import { Link } from "react-router-dom";
 import { formatDate } from "lib/formatDate";
-import { ORDER_STATUS_LABEL, ORDER_TYPE_LABEL } from "behavior/orders/types";
-import type { OrderCardProps } from "./types";
-import styles from "styles/orders.module.scss";
+import { ORDER_STATUS_LABEL, ORDER_TYPE_LABEL } from "behavior/orders";
 
 const OrderCard = ({ order, onClick }: OrderCardProps) => {
 	const handleClick = onClick ? () => onClick(order.order_id) : undefined;

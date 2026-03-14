@@ -1,13 +1,8 @@
+import styles from "styles/orderDetails.module.scss";
+import type { OrderForm, OrderStatus } from "behavior/orders";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import { useOrder } from "behavior/orders/useOrder";
-import { orderToForm, getDefaultOrderForm } from "behavior/orders/orderFormState";
-import type { OrderForm, OrderStatus } from "behavior/orders/types";
-import { createCustomer } from "api/customers.api";
-import { findOrCreateSchool } from "api/schools.api";
-import { cancelOrder, createOrder, saveOrder } from "api/orders.api";
-import styles from "styles/orderDetails.module.scss";
+import { useOrders, useOrderActions, orderToForm, getDefaultOrderForm } from "behavior/orders";
 import OrderDetailsHeader from "components/orders/order-details/OrderDetailsHeader";
 import CustomerSection from "components/orders/order-details/CustomerSection";
 import TypeSelector from "components/orders/order-details/TypeSelector";
@@ -27,19 +22,16 @@ const OrderDetailsPage = () => {
 	const orderId = id ?? "";
 	const navigate = useNavigate();
 	const location = useLocation();
-	const queryClient = useQueryClient();
 
 	const searchParams = new URLSearchParams(location.search);
 	const returnSearchUrl =
 		"/search" +
 		(searchParams.toString() ? `?${searchParams.toString()}` : "");
-	const { data: order, isLoading } = useOrder(orderId, {
-		enabled: !isCreateMode,
-	});
+	const { data: order, isLoading } = useOrders(orderId);
+	const { create, update, cancel, isSaving } = useOrderActions(orderId);
 
 	const emptyOrder = getDefaultOrderForm();
 	const [form, setForm] = useState<OrderForm>(emptyOrder);
-	const [isSaving, setIsSaving] = useState(false);
 
 	useEffect(() => {
 		if (order) {
@@ -52,66 +44,18 @@ const OrderDetailsPage = () => {
 	};
 
 	const handleSave = async () => {
-		setIsSaving(true);
-		try {
-			if (isCreateMode) {
-				const customer = await createCustomer({
-					full_name: form.customer_name,
-					phone: form.customer_phone,
-				});
-				const school =
-					form.type === "graduation" && form.school_name?.trim()
-						? await findOrCreateSchool(
-								form.school_name.trim(),
-								form.school_city?.trim() || undefined,
-							)
-						: null;
-				const created = await createOrder({
-					customer_id: customer.id,
-					school_id: school?.id ?? null,
-					type: form.type,
-					status: form.status,
-					description: form.description || null,
-					release_date: form.release_date || null,
-					next_visit_date: form.next_visit_date || null,
-					price: form.price === "" ? null : form.price,
-					deposit: form.deposit === "" ? null : form.deposit,
-				});
-				queryClient.invalidateQueries({ queryKey: ["orders"] });
-				navigate(`/orders/${created.id}`);
-			} else {
-				if (!order) return;
-
-				const payload = {
-					p_order_id: order.order_id,
-					p_customer_id: order.customer_id ?? null,
-					p_customer_name: form.customer_name.trim(),
-					p_customer_phone: form.customer_phone.trim(),
-					p_school_name: form.school_name?.trim() || "",
-					p_school_city: form.school_city?.trim() || "",
-					p_type: form.type,
-					p_status: form.status,
-					p_description: form.description?.trim() || null,
-					p_release_date: form.release_date || null,
-					p_next_visit_date: form.next_visit_date || null,
-					p_price: form.price === "" ? null : form.price,
-					p_deposit: form.deposit === "" ? null : form.deposit,
-				};
-				await saveOrder(payload);
-
-				queryClient.invalidateQueries({ queryKey: ["order", orderId] });
-				queryClient.invalidateQueries({ queryKey: ["orders"] });
-				navigate(returnSearchUrl);
-			}
-		} finally {
-			setIsSaving(false);
+		if (isCreateMode) {
+			const created = await create(form);
+			navigate(`/orders/${created.id}`);
+		} else {
+			if (!order) return;
+			await update(form, order);
+			navigate(returnSearchUrl);
 		}
 	};
 
 	const handleCancelOrder = async () => {
-		await cancelOrder(orderId);
-		queryClient.invalidateQueries({ queryKey: ["order", orderId] });
-		queryClient.invalidateQueries({ queryKey: ["orders"] });
+		await cancel();
 		navigate(returnSearchUrl);
 	};
 
