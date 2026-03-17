@@ -6,16 +6,18 @@ type FittingDateProps = {
 	onChange: (value: string) => void;
 };
 
-const FittingDate = ({ value, onChange }: FittingDateProps) => {
+const FittingDate = ({ value, onChange }: FittingDateProps) => { // TODO: improve and reuse this component
 	return (
-		<section className={styles.section}>
+		<section className={`${styles.section} ${styles.fittingDateSection}`}>
 			<h2 className={styles.sectionTitle}>Дата примірки</h2>
-			<RoundedDateInput
-				label=""
-				value={value}
-				onChange={onChange}
-				placeholder="дд/мм/рррр"
-			/>
+			<div className={styles.sectionGrid}>
+				<RoundedDateInput
+					label=""
+					value={value}
+					onChange={onChange}
+					placeholder="дд/мм/рррр"
+				/>
+			</div>
 		</section>
 	);
 };

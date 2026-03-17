@@ -7,7 +7,7 @@ import OrderDetailsHeader from "components/orders/order-details/OrderDetailsHead
 import { CustomerSection } from "components/customer";
 import TypeSelector from "components/orders/order-details/TypeSelector";
 import DescriptionSection from "components/orders/order-details/DescriptionSection";
-import FittingDate from "components/orders/order-details/FittingDate";
+
 import PaymentSection from "components/orders/order-details/PaymentSection";
 import OrderDetailsActions from "components/orders/order-details/OrderDetailsActions";
 import { BackButton } from "components/buttons";
@@ -19,7 +19,7 @@ const OrderDetailsPage = () => {
 	const mode: Mode = !id || id === "new" ? "create" : "edit";
 	const isCreateMode = mode === "create";
 
-	const orderId = id ?? "";
+	const orderId = isCreateMode ? "" : (id ?? "");
 	const navigate = useNavigate();
 	const location = useLocation();
 
@@ -30,14 +30,13 @@ const OrderDetailsPage = () => {
 	const { data: order, isLoading } = useOrders(orderId);
 	const { create, update, cancel, isSaving } = useOrderActions(orderId);
 
-	const emptyOrder = getDefaultOrderForm();
-	const [form, setForm] = useState<OrderForm>(emptyOrder);
+	const [form, setForm] = useState<OrderForm>(getDefaultOrderForm);
 
 	useEffect(() => {
-		if (order) {
+		if (!isCreateMode && order) {
 			setForm(orderToForm(order));
 		}
-	}, [order]);
+	}, [order, isCreateMode]);
 
 	const setFormUpdates = (updates: Partial<OrderForm>) => {
 		setForm((prev) => ({ ...prev, ...updates }));
@@ -74,7 +73,6 @@ const OrderDetailsPage = () => {
 			</div>
 		);
 	}
-
 	return (
 		<div className={styles.container}>
 			<OrderDetailsHeader
@@ -106,11 +104,8 @@ const OrderDetailsPage = () => {
 			<DescriptionSection
 				value={form.description}
 				onChange={(description) => setFormUpdates({ description })}
-			/>
-
-			<FittingDate
-				value={form.next_visit_date}
-				onChange={(next_visit_date) => setFormUpdates({ next_visit_date })}
+				nextVisitDate={form.next_visit_date}
+				onNextVisitDateChange={(next_visit_date) => setFormUpdates({ next_visit_date })}
 			/>
 
 			<PaymentSection
