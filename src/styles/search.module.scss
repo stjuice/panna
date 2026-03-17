@@ -57,9 +57,10 @@
   font-weight: bolder;
 
   display: grid;
-  grid-template-columns: 40% 15% 25% 20%;
+  grid-template-columns: 35% 15% 20% 20%;
+  gap: 2rem;
   border-bottom: 2px solid #829fbd;
-  padding-bottom: 6px;
+  padding: 6px 16px;
 
   first-child {
     margin-left: 1rem;
@@ -77,13 +78,20 @@
 
 .rowHeader {
   display: grid;
-  grid-template-columns: 40% 15% 25% 20%;
+  grid-template-columns: 35% 15% 20% 20%;
+  gap: 2rem;
   padding: 12px 16px;
   cursor: pointer;
 }
 
 .mobileField {
   display: contents;
+
+  span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 }
 
 .mobileLabel {
@@ -92,6 +100,12 @@
 
 .rowExpandedHeader {
   background: white !important;
+
+  span {
+    text-overflow: unset;
+    overflow: visible;
+    white-space: unset;
+  }
 }
 
 .rowHeader:hover {
